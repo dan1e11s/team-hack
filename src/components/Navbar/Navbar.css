@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 15px 20px;
 }
 
 .nav-logo {
@@ -33,7 +33,7 @@
 
 .nav-list-item:hover {
   cursor: pointer;
-  color: rgb(49, 195, 146);
+  color: #6e9c9f;
 }
 
 .nav-acc {
@@ -54,4 +54,24 @@
 
 .nav-btn:hover {
   cursor: pointer;
+  color: #6e9c9f;
+}
+
+.reg-title {
+  margin-left: 15px;
+}
+
+.auth-btn {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.auth-btn:hover {
+  color: #6e9c9f;
+}
+
+.active {
+  color: #6e9c9f;
 }
