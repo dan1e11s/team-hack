@@ -1,0 +1,46 @@
+.footer {
+  background-color: #ece8de;
+  display: flex;
+  justify-content: space-around;
+  padding: 5.5% 6%;
+}
+.footerSt {
+  display: flex;
+}
+.startP {
+  font-size: 14px;
+}
+.footerLogo {
+  display: flex;
+  flex-direction: column;
+}
+.footerCenter {
+  display: flex;
+  margin-right: 150px;
+}
+.footerEnd {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.footerUl {
+  list-style: none;
+  margin-top: 0;
+}
+.footerTitle {
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-left: 5px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.footerP {
+  margin-top: 0;
+}
+.footerImg {
+  margin: 6px 7px;
+}
+.footerVisa {
+  width: 60px;
+  margin-top: 10px;
+}
