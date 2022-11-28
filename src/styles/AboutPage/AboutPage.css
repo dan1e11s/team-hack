@@ -1,0 +1,103 @@
+div {
+  font-family: "Raleway";
+  font-weight: 500;
+  /* background: #e5e5e5; */
+}
+
+.aboutPage_h1 {
+  font-weight: 500;
+  font-size: 55px;
+  margin-left: 11%;
+}
+.aboutPage_main_p {
+  display: flex;
+  align-items: center;
+  margin-left: 11%;
+}
+.content_aboutPage {
+  max-width: 1107px;
+  margin: 0 auto;
+}
+.block_1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 130px;
+  width: 1107px;
+  height: 547px;
+}
+
+.first_h3 {
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+  color: #000000;
+}
+.text_block1 {
+  max-width: 542px;
+  font-size: 17px;
+}
+.block_2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.second_h3 {
+  font-weight: 500;
+  font-size: 25px;
+  color: #000000;
+}
+.text_block2 {
+  width: 542px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: 0.02em;
+}
+.img2_aboutPage {
+  height: 547px;
+  width: 442px;
+}
+.btn_aboutPage {
+  border: #000000;
+  padding: 22px 50px 22px 75px;
+  margin-top: 130px;
+  background: #6e9c9f;
+  color: white;
+  cursor: pointer;
+}
+.btn_aboutPage:hover {
+  background: #527e81;
+}
+
+@media (max-width: 1024px) {
+  .block_1 {
+    width: 1000px;
+  }
+  .text_block1 {
+    width: 400px;
+    margin-right: 40px;
+  }
+  .img1_aboutPage {
+    width: 350px;
+    margin-left: 45px;
+  }
+  .block_2 {
+    width: 1000px;
+  }
+  .second_h3 {
+    width: 450px;
+    margin-left: 40px;
+  }
+  .text_block2 {
+    width: 450px;
+    margin-left: 40px;
+  }
+  .img2_aboutPage {
+    width: 350px;
+    height: 450px;
+    margin-right: 40px;
+  }
+}
