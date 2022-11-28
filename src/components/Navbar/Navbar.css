@@ -1,0 +1,77 @@
+.nav {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-title {
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  column-gap: 40px;
+}
+
+.nav-list-item {
+  font-size: 15px;
+  list-style-type: none;
+  transition: all 0.2s ease;
+}
+
+.nav-list-item:hover {
+  cursor: pointer;
+  color: #6e9c9f;
+}
+
+.nav-acc {
+  display: flex;
+  align-items: center;
+}
+
+.nav-acc span {
+  font-size: 20px;
+}
+
+.nav-btn {
+  font-size: 15px;
+  border: none;
+  background-color: #fff;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+  cursor: pointer;
+  color: #6e9c9f;
+}
+
+.reg-title {
+  margin-left: 15px;
+}
+
+.auth-btn {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.auth-btn:hover {
+  color: #6e9c9f;
+}
+
+.active {
+  color: #6e9c9f;
+}

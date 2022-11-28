@@ -9,7 +9,7 @@ const MainRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<MainPage />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/about" element={<AboutPage />} />
       </Route>
