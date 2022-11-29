@@ -1,18 +1,37 @@
-div {
-  font-family: "Raleway";
+.about {
   font-weight: 500;
-  /* background: #e5e5e5; */
+  margin: 0 11%;
 }
-
+.aboutTop {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .aboutPage_h1 {
   font-weight: 500;
   font-size: 55px;
-  margin-left: 11%;
 }
-.aboutPage_main_p {
+.breadcrumbs {
+  display: flex;
+  padding-bottom: 45px;
+  font-size: 18px;
+}
+#breadcrumb1:hover {
+  cursor: pointer;
+  border-bottom: 1px solid #6e9c9f;
+}
+#breadcrumb2 {
+  color: #909090;
+  margin-left: 10px;
+}
+#breadcrumb3 {
+  color: #909090;
+  margin-left: 10px;
+}
+.aboutPage_main_a {
   display: flex;
   align-items: center;
-  margin-left: 11%;
 }
 .content_aboutPage {
   max-width: 1107px;
@@ -29,10 +48,7 @@ div {
 
 .first_h3 {
   font-weight: 500;
-  font-size: 25px;
-  line-height: 140%;
-  letter-spacing: 0.02em;
-  color: #000000;
+  font-size: 30px;
 }
 .text_block1 {
   max-width: 542px;
@@ -45,7 +61,7 @@ div {
 }
 .second_h3 {
   font-weight: 500;
-  font-size: 25px;
+  font-size: 30px;
   color: #000000;
 }
 .text_block2 {
@@ -62,13 +78,18 @@ div {
 }
 .btn_aboutPage {
   border: #000000;
-  padding: 22px 50px 22px 75px;
-  margin-top: 130px;
+  height: 70px;
+  width: 240px;
+  margin-top: 100px;
   background: #6e9c9f;
   color: white;
   cursor: pointer;
+  margin-bottom: 50px;
+  font-size: 16px;
+  font-weight: 400;
 }
 .btn_aboutPage:hover {
+  transition: 0.6s;
   background: #527e81;
 }
 
