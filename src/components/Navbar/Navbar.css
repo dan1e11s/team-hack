@@ -57,6 +57,21 @@
   color: #6e9c9f;
 }
 
+.menu-btn {
+  display: none;
+  color: #fff;
+  padding: 7px 15px;
+  font-size: 16px;
+  background-color: #6e9c9f;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menu-btn:hover {
+  background-color: #5d8d90;
+}
+
 .reg-title {
   margin-left: 15px;
 }
@@ -66,6 +81,7 @@
   font-weight: bold;
   text-transform: uppercase;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .auth-btn:hover {
@@ -74,4 +90,23 @@
 
 .active {
   color: #6e9c9f;
+}
+
+@media all and (max-width: 991px) {
+  .nav {
+    padding: 8px 20px;
+  }
+
+  .nav-list {
+    display: none;
+  }
+
+  .nav-acc {
+    display: none;
+  }
+
+  .menu-btn {
+    display: block;
+    float: left;
+  }
 }

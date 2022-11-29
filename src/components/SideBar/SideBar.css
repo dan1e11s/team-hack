@@ -1,0 +1,26 @@
+.collapse-box {
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  width: 100px;
+  background-color: #fff;
+  padding: 0 20px;
+  box-shadow: 0 0 20px rgb(25 25 25 / 10%);
+}
+
+.collapse-list {
+  padding: 0;
+}
+
+.collapse-list-item {
+  font-weight: bold;
+  font-size: 15px;
+  list-style-type: none;
+  transition: all 0.2s ease;
+  margin-bottom: 25px;
+}
+
+.collapse-list-item:hover {
+  cursor: pointer;
+  color: #6e9c9f;
+}
