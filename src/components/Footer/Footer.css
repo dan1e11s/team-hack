@@ -6,6 +6,7 @@
 }
 .footerSt {
   display: flex;
+  cursor: pointer;
 }
 .startP {
   font-size: 14px;
@@ -26,6 +27,10 @@
 .footerUl {
   list-style: none;
   margin-top: 0;
+  cursor: pointer;
+}
+.footerUl:hover {
+  color: #6e9c9f;
 }
 .footerTitle {
   font-size: 16px;
@@ -43,4 +48,10 @@
 .footerVisa {
   width: 60px;
   margin-top: 10px;
+}
+.footerA:link {
+  color: black;
+}
+.footerA:visited {
+  color: black;
 }
