@@ -92,6 +92,18 @@
   color: #6e9c9f;
 }
 
+.forgot-text {
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline;
+}
+
+.forgot-text:hover {
+  color: #6e9c9f;
+}
+
 @media all and (max-width: 991px) {
   .nav {
     padding: 8px 20px;
