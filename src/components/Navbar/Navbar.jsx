@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import './Navbar.css';
-import { Box, Button, TextField } from '@mui/material';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import VpnKeyIcon from '@mui/icons-material/VpnKey';
-import Modal from '@mui/material/Modal';
-import { styled } from '@mui/material/styles';
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import BeachAccessIcon from "@mui/icons-material/BeachAccess";
+import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import "./Navbar.css";
+import { Box, Button, TextField } from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
+import Modal from "@mui/material/Modal";
+import { styled } from "@mui/material/styles";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
 
 const ColorButton = styled(Button)(({ theme }) => ({
-  color: theme.palette.getContrastText('#6e9c9f'),
-  backgroundColor: '#6e9c9f',
-  '&:hover': {
-    backgroundColor: '#5d8d90',
+  color: theme.palette.getContrastText("#6e9c9f"),
+  backgroundColor: "#6e9c9f",
+  "&:hover": {
+    backgroundColor: "#5d8d90",
   },
 }));
 
@@ -49,18 +49,16 @@ const Navbar = () => {
       <ul className="nav-list">
         <li
           className={`nav-list-item ${
-            location.pathname === '/' ? 'active' : ''
+            location.pathname === "/" ? "active" : ""
           }`}
-          onClick={() => navigate('/')}
-        >
+          onClick={() => navigate("/")}>
           Главная
         </li>
         <li
           className={`nav-list-item ${
-            location.pathname === '/shop' ? 'active' : ''
+            location.pathname === "/shop" ? "active" : ""
           }`}
-          onClick={() => navigate('/shop')}
-        >
+          onClick={() => navigate("/shop")}>
           Магазин
         </li>
         <li className="nav-list-item">О бренде</li>
@@ -77,25 +75,23 @@ const Navbar = () => {
         </button>
       </div>
       <Modal
-        sx={{ textAlign: 'center' }}
+        sx={{ textAlign: "center" }}
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <Box sx={style}>
           <span className="log-title auth-btn">Вход</span>
           <span className="reg-title auth-btn">Регистрация</span>
           <Box>
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'flex-end',
-                justifyContent: 'center',
-                marginBottom: '20px',
-              }}
-            >
-              <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                display: "flex",
+                alignItems: "flex-end",
+                justifyContent: "center",
+                marginBottom: "20px",
+              }}>
+              <AccountCircle sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField
                 id="input-with-sx"
                 label="Enter your email"
@@ -104,13 +100,12 @@ const Navbar = () => {
             </Box>
             <Box
               sx={{
-                display: 'flex',
-                alignItems: 'flex-end',
-                justifyContent: 'center',
-                marginBottom: '20px',
-              }}
-            >
-              <VpnKeyIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                display: "flex",
+                alignItems: "flex-end",
+                justifyContent: "center",
+                marginBottom: "20px",
+              }}>
+              <VpnKeyIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField
                 type="password"
                 label="Enter your password"

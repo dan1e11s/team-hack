@@ -54,9 +54,9 @@ const AboutPage = () => {
             alt=""
           />
         </div>
-        <div style={{ width: "100%", textAlign: "center" }}>
-          <button className="btn_aboutPage">Перейти в магазин</button>
-        </div>
+      </div>
+      <div style={{ width: "100%", textAlign: "center", paddingBottom: "7%" }}>
+        <button className="btn_aboutPage">Перейти в магазин</button>
       </div>
     </div>
   );
