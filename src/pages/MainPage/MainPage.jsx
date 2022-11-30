@@ -22,6 +22,13 @@ const MainPage = () => {
           </button>
         </div>
       </div>
+      <div className="mainblock">
+        <img
+          className="mainphoto"
+          src="http://womazing.s-host.net/wp-content/uploads/2021/04/main-photo.jpg"
+          alt="mainphoto"
+        />
+      </div>
       <div className="mainContent">
         <h2 className="mainContentText">Что для нас важно</h2>
         <div className="mainCards">
@@ -37,7 +44,7 @@ const MainPage = () => {
             <img className="mainIcon" src={secondpng} alt="" />
             <h3 className="cardH">Скорость</h3>
             <p className="cardP">
-              Благодаря отлаженной системе в ... мы можем отшивать до 20-ти
+              Благодаря отлаженной системе в UMBRELLA мы можем отшивать до 20-ти
               единиц продукции в наших собственных цехах
             </p>
           </div>
@@ -46,7 +53,7 @@ const MainPage = () => {
             <h3 className="cardH">Ответственность</h3>
             <p className="cardP">
               Мы заботимся о людях и планете. Безотходное производство и
-              комфортные условия труда - все это ..
+              комфортные условия труда - все это UMBRELLA
             </p>
           </div>
         </div>
@@ -54,7 +61,9 @@ const MainPage = () => {
       <div className="mainBottom" id="mainBottom">
         <img src={ecoIMG} alt="ecoIMG" className="ecoImg" />
         <div className="mainBottomText">
-          <h2 className="mainContentText">Экологичность</h2>
+          <h2 className="mainContentText" id="mainBottomText">
+            Экологичность
+          </h2>
           <p className="mainBottomP">
             Откройте для себя наш широкий выбор оригинальных дизайнов,
             напечатанных на экологически чистых материалах с использованием
