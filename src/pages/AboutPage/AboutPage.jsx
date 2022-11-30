@@ -25,12 +25,14 @@ const AboutPage = () => {
       </div>
       <div className="content_aboutPage">
         <div className="block_1">
-          <img
-            className="img1_aboutPage"
-            src="https://timdelux.github.io/img/about1.jpg"
-            alt="There's an img"
-          />
-          <div>
+          <div className="blockImg">
+            <img
+              className="img1_aboutPage"
+              src="https://timdelux.github.io/img/about1.jpg"
+              alt="There's an img"
+            />
+          </div>
+          <div className="info1">
             <h3 className="first_h3">О UMBRELLA</h3>
             <p className="text_block1">
               UMBRELLA была основана в 1991 году с четкой международной миссией
@@ -63,13 +65,21 @@ const AboutPage = () => {
               работников швейной промышленности.
             </p>
           </div>
-          <img
-            className="img2_aboutPage"
-            src="https://timdelux.github.io/img/about2.jpg"
-            alt=""
-          />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              width: "100%",
+              justifyContent: "center",
+            }}>
+            <img
+              className="img2_aboutPage"
+              src="https://timdelux.github.io/img/about2.jpg"
+              alt="asdsad"
+            />
+          </div>
         </div>
-        <div style={{ width: "100%", textAlign: "center" }}>
+        <div className="divBtn" style={{ width: "100%", textAlign: "center" }}>
           <button className="btn_aboutPage" onClick={() => navigate("/shop")}>
             Перейти в магазин
           </button>
