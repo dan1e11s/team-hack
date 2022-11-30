@@ -55,3 +55,51 @@
 .footerA:visited {
   color: black;
 }
+@media all and (max-width: 1024px) {
+  .footerCenter {
+    margin-right: 80px;
+  }
+}
+@media all and (max-width: 860px) {
+  .footer {
+    width: 100%;
+    padding: 5.5% 0;
+  }
+  .footerCenter {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media all and (max-width: 610px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footerSt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footerStart {
+    padding: 5% 0%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footerCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 0;
+  }
+  .footerEnd {
+    padding: 6% 0%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footerUl {
+    padding-left: 0;
+  }
+}
