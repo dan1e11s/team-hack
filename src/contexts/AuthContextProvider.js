@@ -5,9 +5,10 @@ import { useNavigate } from 'react-router-dom';
 export const authContext = createContext();
 export const useAuth = () => useContext(authContext);
 
-const API = 'http://34.116.211.66/';
+export const API = 'http://34.118.21.251/';
 
 const AuthContextProvider = ({ children }) => {
+  const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
   const [currentUser, setCurrentUser] = useState(false);
 
@@ -15,10 +16,12 @@ const AuthContextProvider = ({ children }) => {
 
   const register = async (formData) => {
     try {
-      const res = await axios.post(`${API}account/register/`, formData);
-      console.log(res);
+      const { data } = await axios.post(`${API}account/register/`, formData);
+      setSuccess(data);
+      console.log(data);
     } catch (err) {
       console.log(err);
+      setSuccess(err.response.data.username[0]);
       setError(Object.values(err.response.data).flat(2));
     }
   };
@@ -37,7 +40,8 @@ const AuthContextProvider = ({ children }) => {
 
   const values = {
     error,
-
+    success,
+    setSuccess,
     setError,
     register,
     login,
