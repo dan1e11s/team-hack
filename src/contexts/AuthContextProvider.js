@@ -20,8 +20,8 @@ const AuthContextProvider = ({ children }) => {
       setSuccess(data);
       console.log(data);
     } catch (err) {
-      console.log(err);
-      setSuccess(err.response.data.username[0]);
+      console.log(Object.values(err.response.data).flat(2)[0]);
+      setSuccess(Object.values(err.response.data).flat(2)[0]);
       setError(Object.values(err.response.data).flat(2));
     }
   };
