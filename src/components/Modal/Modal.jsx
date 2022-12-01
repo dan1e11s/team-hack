@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, TextField, Button } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
@@ -6,13 +6,14 @@ import Modal from '@mui/material/Modal';
 import { styled } from '@mui/material/styles';
 import EmailIcon from '@mui/icons-material/Email';
 import { useAuth } from '../../contexts/AuthContextProvider';
+import Swal from 'sweetalert2';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  minWidth: 400,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -31,17 +32,14 @@ const ModalBox = ({ open, handleClose }) => {
   const [activeLog, setActiveLog] = useState(true);
   const [activeReg, setActiveReg] = useState(false);
 
-  const { register, login } = useAuth();
+  const { register, login, success } = useAuth();
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
-  // const [logUsername, setLogUsername] = useState('');
-  // const [logPassword, setLogPassword] = useState('');
-
-  function createUser() {
+  async function createUser() {
     if (
       !username.trim() ||
       !email.trim() ||
@@ -57,13 +55,32 @@ const ModalBox = ({ open, handleClose }) => {
     formData.append('password', password);
     formData.append('password_confirm', passwordConfirm);
 
-    register(formData);
+    await register(formData);
 
     setUsername('');
     setEmail('');
     setPassword('');
     setPasswordConfirm('');
+    handleClose();
   }
+
+  useEffect(() => {
+    if (
+      success === 'Спасибо за регистрацию Активируйте свой аккаунт через почту'
+    ) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Successfully!',
+        text: `${success}`,
+      });
+    } else if (success) {
+      Swal.fire({
+        icon: 'error',
+        title: 'OOOPS...',
+        text: `${success}`,
+      });
+    }
+  }, [success]);
 
   function loginUser() {
     if (!username.trim() || !password.trim()) {
@@ -235,14 +252,7 @@ const ModalBox = ({ open, handleClose }) => {
               variant="standard"
             />
           </Box>
-          <ColorButton
-            variant="contained"
-            onClick={() => {
-              createUser();
-              setActiveLog(true);
-              setActiveReg(false);
-            }}
-          >
+          <ColorButton variant="contained" onClick={createUser}>
             Регистрация
           </ColorButton>
         </Box>

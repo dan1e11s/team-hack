@@ -20,7 +20,7 @@ function reducer(state = INIT_STATE, action) {
   }
 }
 
-const API = 'http://34.116.211.66/blog/products';
+const API = 'http://34.118.21.251/shop/products';
 
 const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);

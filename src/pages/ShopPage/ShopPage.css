@@ -1,0 +1,17 @@
+.shop-box {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.shop-title {
+  font-size: 55px;
+  font-weight: normal;
+}
+
+.shop-link {
+  position: relative;
+  text-decoration: none;
+  color: #000;
+  font-size: 17px;
+}
