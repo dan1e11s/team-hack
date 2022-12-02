@@ -32,7 +32,7 @@ const ModalBox = ({ open, handleClose }) => {
   const [activeLog, setActiveLog] = useState(true);
   const [activeReg, setActiveReg] = useState(false);
 
-  const { register, login, success } = useAuth();
+  const { register, login, success, getActivatedCode } = useAuth();
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -56,6 +56,7 @@ const ModalBox = ({ open, handleClose }) => {
     formData.append('password_confirm', passwordConfirm);
 
     await register(formData);
+    getActivatedCode();
 
     setUsername('');
     setEmail('');
