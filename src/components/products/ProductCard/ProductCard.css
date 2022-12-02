@@ -3,8 +3,13 @@
   position: relative;
 }
 
+.shop-card-img {
+  height: 100%;
+}
+
 .shop-img-wrapper {
   position: relative;
+  height: 500px;
 }
 
 .shop-img-wrapper::before {

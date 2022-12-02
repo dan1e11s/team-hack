@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useProduct } from '../../../contexts/ProductContextProvider';
 import ProductCard from '../ProductCard/ProductCard';
 
 const ProductList = () => {
-  const { products, getProducts, categories } = useProduct();
+  const { products, getProducts } = useProduct();
 
   useEffect(() => {
     getProducts();
