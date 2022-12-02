@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export const authContext = createContext();
 export const useAuth = () => useContext(authContext);
 
-export const API = 'http://34.118.21.251/';
+export const API = 'http://34.116.219.34/';
 
 const AuthContextProvider = ({ children }) => {
   const [success, setSuccess] = useState('');
@@ -38,13 +38,20 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  async function getActivatedCode() {
+    const res = await axios.get(`${API}account/activate`);
+    console.log(res);
+  }
+
   const values = {
     error,
     success,
+
     setSuccess,
     setError,
     register,
     login,
+    getActivatedCode,
   };
 
   return <authContext.Provider value={values}>{children}</authContext.Provider>;

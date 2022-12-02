@@ -6,6 +6,7 @@ export const useProduct = () => useContext(productContext);
 
 const INIT_STATE = {
   products: [],
+  categories: [],
   oneProduct: null,
 };
 
@@ -15,19 +16,23 @@ function reducer(state = INIT_STATE, action) {
       return { ...state, products: action.payload.results };
     case 'GET_ONE_PRODUCT':
       return { ...state, oneProduct: action.payload };
+    case 'GET_CATEGORIES':
+      return { ...state, categories: action.payload };
     default:
       return state;
   }
 }
 
-const API = 'http://34.118.21.251/shop/products';
+const API = 'http://34.116.219.34/';
 
 const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
   async function getProducts() {
     try {
-      const { data } = await axios(`${API}/${window.location.search}`);
+      const { data } = await axios(
+        `${API}shop/products${window.location.search}`
+      );
       dispatch({
         type: 'GET_ALL_PRODUCTS',
         payload: data,
@@ -37,9 +42,23 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
+  async function getCategories() {
+    try {
+      const { data } = await axios(`${API}shop/categories`);
+      dispatch({
+        type: 'GET_CATEGORIES',
+        payload: data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const values = {
     products: state.products,
+    categories: state.categories,
 
+    getCategories,
     getProducts,
   };
   return (

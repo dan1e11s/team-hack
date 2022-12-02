@@ -3,7 +3,7 @@ import { useProduct } from '../../../contexts/ProductContextProvider';
 import ProductCard from '../ProductCard/ProductCard';
 
 const ProductList = () => {
-  const { products, getProducts } = useProduct();
+  const { products, getProducts, categories } = useProduct();
 
   useEffect(() => {
     getProducts();
@@ -14,7 +14,7 @@ const ProductList = () => {
       style={{
         display: 'flex',
         justifyContent: 'space-between',
-        margin: '100px 0',
+        margin: '0 0 100px',
       }}
     >
       {products ? (
