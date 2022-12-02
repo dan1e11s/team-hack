@@ -4,6 +4,7 @@ import ProductList from '../../components/products/ProductList/ProductList';
 import './ShopPage.css';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import Category from '../../components/Category/Category';
+import SearchBlock from '../../components/Search/SearchBlock';
 
 const ShopPage = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const ShopPage = () => {
           </div>
         </div>
         <Category />
+        <SearchBlock />
       </div>
       <ProductList />
     </div>

@@ -8,7 +8,6 @@ const Category = () => {
   useEffect(() => {
     getCategories();
   }, []);
-  console.log(categories.results);
 
   return (
     <div className="category-wrapper">

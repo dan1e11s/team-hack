@@ -3,10 +3,16 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import './ProductCard.css';
 import EastIcon from '@mui/icons-material/East';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductCard({ item }) {
+  const navigate = useNavigate();
+
   return (
-    <div className="shop-wrapper">
+    <div
+      className="shop-wrapper"
+      onClick={() => navigate(`/products/${item.slug}`)}
+    >
       <Card className="shop-card">
         <div className="shop-img-wrapper">
           <CardMedia

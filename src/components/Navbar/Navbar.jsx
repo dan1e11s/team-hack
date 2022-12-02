@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import './Navbar.css';
 import SideBar from '../SideBar/SideBar';
 import Modal from '../Modal/Modal';
+import { useAuth } from '../../contexts/AuthContextProvider';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const { currentUser, checkAuth, handleLogout } = useAuth();
+
+  useEffect(() => {
+    if (localStorage.getItem('tokens')) {
+      checkAuth();
+    }
+  }, []);
 
   const [collapseOpen, setCollapseOpen] = useState(false);
 
@@ -73,8 +82,15 @@ const Navbar = () => {
       </ul>
       <div className="nav-acc">
         <PermIdentityIcon />
-        <button className="nav-btn" onClick={handleOpen}>
-          Вход
+        <button
+          className="nav-btn"
+          onClick={() => {
+            if (!currentUser) {
+              handleOpen();
+            }
+          }}
+        >
+          {currentUser ? currentUser : 'Вход'}
         </button>
       </div>
       <Modal open={open} handleClose={handleClose} />
