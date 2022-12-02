@@ -54,12 +54,23 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
+  async function addProduct(newProduct, navigate) {
+    try {
+      await axios.post(`${API}shop/products/`, newProduct);
+      navigate('/shop');
+      getProducts();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const values = {
     products: state.products,
     categories: state.categories,
 
     getCategories,
     getProducts,
+    addProduct,
   };
   return (
     <productContext.Provider value={values}>{children}</productContext.Provider>

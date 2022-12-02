@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ProductList from '../../components/products/ProductList/ProductList';
 import './ShopPage.css';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import Category from '../../components/Category/Category';
 
 const ShopPage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="shop-box">
       <div className="shop-wrapper">
@@ -21,7 +23,7 @@ const ShopPage = () => {
               </span>
             </div>
             <div className="shop-add-product">
-              <p>Добавить продукт</p>
+              <p onClick={() => navigate('/add')}>Добавить продукт</p>
               <AddBoxIcon sx={{ marginLeft: '5px', cursor: 'pointer' }} />
             </div>
           </div>
