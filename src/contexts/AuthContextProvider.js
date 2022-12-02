@@ -38,20 +38,54 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  async function getActivatedCode() {
-    const res = await axios.get(`${API}account/activate`);
-    console.log(res);
+  async function checkAuth() {
+    console.log('Check Auth Worked!');
+    try {
+      const tokens = JSON.parse(localStorage.getItem('tokens'));
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios.post(
+        `${API}/account/api/token/refresh/`,
+        { refresh: tokens.refresh },
+        config
+      );
+      localStorage.setItem(
+        'tokens',
+        JSON.stringify({
+          access: res.data.access,
+          refresh: tokens.refresh,
+        })
+      );
+      const email = localStorage.getItem('email');
+      setCurrentUser(email);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+      handleLogout();
+    }
+  }
+
+  function handleLogout() {
+    localStorage.removeItem('tokens');
+    localStorage.removeItem('email');
+    setCurrentUser(false);
   }
 
   const values = {
     error,
     success,
+    currentUser,
 
+    checkAuth,
     setSuccess,
     setError,
     register,
     login,
-    getActivatedCode,
+    handleLogout,
   };
 
   return <authContext.Provider value={values}>{children}</authContext.Provider>;

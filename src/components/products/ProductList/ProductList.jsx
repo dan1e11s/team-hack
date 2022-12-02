@@ -18,7 +18,9 @@ const ProductList = () => {
       }}
     >
       {products ? (
-        products.map((item) => <ProductCard key={item.quantity} item={item} />)
+        products.map((item) => (
+          <ProductCard key={item.updated_at} item={item} />
+        ))
       ) : (
         <h3>Loading</h3>
       )}

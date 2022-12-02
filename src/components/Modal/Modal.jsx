@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles';
 import EmailIcon from '@mui/icons-material/Email';
 import { useAuth } from '../../contexts/AuthContextProvider';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -32,12 +33,14 @@ const ModalBox = ({ open, handleClose }) => {
   const [activeLog, setActiveLog] = useState(true);
   const [activeReg, setActiveReg] = useState(false);
 
-  const { register, login, success, getActivatedCode } = useAuth();
+  const { register, login, success, currentUser } = useAuth();
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+
+  const navigate = useNavigate();
 
   async function createUser() {
     if (
@@ -56,7 +59,6 @@ const ModalBox = ({ open, handleClose }) => {
     formData.append('password_confirm', passwordConfirm);
 
     await register(formData);
-    getActivatedCode();
 
     setUsername('');
     setEmail('');
@@ -94,6 +96,8 @@ const ModalBox = ({ open, handleClose }) => {
     formData.append('password', password);
 
     login(formData, username);
+    navigate('/');
+    handleClose();
   }
 
   return (
