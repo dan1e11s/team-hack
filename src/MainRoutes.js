@@ -1,14 +1,15 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import MainPage from './pages/MainPage/MainPage';
-import ShopPage from './pages/ShopPage/ShopPage';
-import Layout from './components/Layout/Layout';
-import AboutPage from './pages/AboutPage/AboutPage';
-import ContactsPage from './pages/ContactsPage/ContactsPage';
-import AddProductPage from './pages/AddProductPage/AddProductPage';
-import DetailsPage from './pages/DetailsPage/DetailsPage';
-import AuthContextProvider from './contexts/AuthContextProvider';
-import ProductContextProvider from './contexts/ProductContextProvider';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import MainPage from "./pages/MainPage/MainPage";
+import ShopPage from "./pages/ShopPage/ShopPage";
+import Layout from "./components/Layout/Layout";
+import AboutPage from "./pages/AboutPage/AboutPage";
+import ContactsPage from "./pages/ContactsPage/ContactsPage";
+import AddProductPage from "./pages/AddProductPage/AddProductPage";
+import DetailsPage from "./pages/DetailsPage/DetailsPage";
+import AuthContextProvider from "./contexts/AuthContextProvider";
+import ProductContextProvider from "./contexts/ProductContextProvider";
+import PaymentForm from "./pages/PaymentForm/PaymentForm";
 
 const MainRoutes = () => {
   return (
