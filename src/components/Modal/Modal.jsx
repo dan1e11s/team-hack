@@ -33,7 +33,7 @@ const ModalBox = ({ open, handleClose }) => {
   const [activeLog, setActiveLog] = useState(true);
   const [activeReg, setActiveReg] = useState(false);
 
-  const { register, login, success, currentUser } = useAuth();
+  const { register, login, success } = useAuth();
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');

@@ -71,8 +71,13 @@ const AuthContextProvider = ({ children }) => {
 
   function handleLogout() {
     localStorage.removeItem('tokens');
-    localStorage.removeItem('email');
+    localStorage.removeItem('username');
     setCurrentUser(false);
+  }
+
+  async function deleteAccount() {
+    await axios.delete(`${API}account/delete-account/`);
+    handleLogout();
   }
 
   const values = {
@@ -86,6 +91,7 @@ const AuthContextProvider = ({ children }) => {
     register,
     login,
     handleLogout,
+    deleteAccount,
   };
 
   return <authContext.Provider value={values}>{children}</authContext.Provider>;

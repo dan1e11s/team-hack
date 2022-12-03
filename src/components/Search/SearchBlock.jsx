@@ -4,7 +4,6 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { useSearchParams } from 'react-router-dom';
 import { useProduct } from '../../contexts/ProductContextProvider';
-import axios from 'axios';
 
 const Search = styled('div')(({ theme }) => ({
   width: '25%',
@@ -49,7 +48,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const SearchBlock = () => {
-  const { getSearch } = useProduct();
+  const { getProducts } = useProduct();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('q') || '');
@@ -61,7 +60,7 @@ const SearchBlock = () => {
   }, [query]);
 
   useEffect(() => {
-    getSearch();
+    getProducts();
   }, [query]);
 
   return (
