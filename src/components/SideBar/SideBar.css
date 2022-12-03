@@ -24,3 +24,8 @@
   cursor: pointer;
   color: #6e9c9f;
 }
+@media all and (min-width: 990px) {
+  .collapse-box {
+    display: none;
+  }
+}

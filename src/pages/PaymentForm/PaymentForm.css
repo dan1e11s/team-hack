@@ -26,6 +26,10 @@
   justify-content: space-between;
   align-items: center;
 }
+#order1 {
+  background-color: #ece8de;
+  padding: 2% 2%;
+}
 .paymentUls {
   display: flex;
 }
@@ -74,29 +78,105 @@
   letter-spacing: 0.025em;
   cursor: pointer;
 }
+.paymentFormH1 {
+  font-weight: 500;
+  font-size: 55px;
+}
 
 .payment-btn:hover {
   background: #5d8d90;
   transition: 0.6s;
 }
 @media all and (max-width: 1024px) {
-  .payment-inp {
-    width: 300px;
+  .payment {
+    padding-left: 6%;
+  }
+  .paymentTop {
+    padding-left: 6%;
+  }
+  .order {
+    padding-left: 10%;
+  }
+  .paymentBot {
+    padding-left: 6%;
+  }
+  .paymentUls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .paymentUl {
+    margin: 20px 40px;
   }
 }
-@media all and (max-width: 768px) {
-  .payment-wrapper {
-    width: 65%;
-    margin: 0 auto;
+@media all and (max-width: 900px) {
+  .paymentTop {
+    padding-left: 0%;
+  }
+  .paymentBot {
+    padding-left: 0%;
+  }
+  .paymentTop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .paymentBot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .paymentForm {
+    margin-top: 30px;
+  }
+  .order {
+    margin: 0;
+    margin-top: 35px;
+  }
+  .paymentFormH1 {
+    font-size: 46px;
+  }
+  .payment {
+    padding: 0 6%;
+  }
+  .order {
+    padding-left: 0;
+  }
+}
+@media all and (max-width: 520px) {
+  .paymentFormH1 {
+    width: 100%;
+    font-size: 40px;
+    text-align: center;
+  }
+  .payment {
+    padding: 3%;
+  }
+  .breadcrumbs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 0;
   }
 }
 @media all and (max-width: 425px) {
-  .payment-inp {
-    width: 200px;
-    margin: 15px auto;
+  .payment {
+    margin-bottom: 4%;
   }
-  .payment-wrapper {
-    width: 80%;
+  .order {
+    padding-left: 0;
+    text-align: center;
+  }
+  .paymentUls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .paymentUl {
+    margin: 20px 40px;
+  }
+  .payment-inp {
+    width: 270px;
   }
 }
 @media all and (max-width: 375px) {
