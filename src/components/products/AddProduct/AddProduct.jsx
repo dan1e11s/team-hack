@@ -68,17 +68,22 @@ const AddProduct = () => {
           onChange={handleChange}
         >
           {categories.results?.map((item) => (
-            <MenuItem key={item.title} value={item.title}>
-              {item.title}
+            <MenuItem key={item.title} value={item.slug}>
+              {item.slug}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
-      <TextField
+      {/* <TextField
         sx={{ width: 345, marginBottom: '30px' }}
         type="text"
         label="Image URL"
         onChange={(e) => setImage(e.target.value)}
+      /> */}
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => setImage(e.target.files[0])}
       />
       <button className="add-btn" onClick={createProduct}>
         Add

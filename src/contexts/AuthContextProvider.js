@@ -49,7 +49,7 @@ const AuthContextProvider = ({ children }) => {
         },
       };
       const res = await axios.post(
-        `${API}/account/api/token/refresh/`,
+        `${API}account/api/token/refresh/`,
         { refresh: tokens.refresh },
         config
       );
@@ -60,12 +60,11 @@ const AuthContextProvider = ({ children }) => {
           refresh: tokens.refresh,
         })
       );
-      const email = localStorage.getItem('email');
-      setCurrentUser(email);
+      const username = localStorage.getItem('username');
+      setCurrentUser(username);
       console.log(res);
     } catch (err) {
       console.log(err);
-      // handleLogout();
     }
   }
 
@@ -76,8 +75,19 @@ const AuthContextProvider = ({ children }) => {
   }
 
   async function deleteAccount() {
-    await axios.delete(`${API}account/delete-account/`);
-    handleLogout();
+    try {
+      const tokens = JSON.parse(localStorage.getItem('tokens'));
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios.delete(`${API}account/delete-account/`, config);
+      handleLogout();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const values = {
