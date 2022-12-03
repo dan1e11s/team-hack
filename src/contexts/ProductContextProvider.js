@@ -9,6 +9,7 @@ const INIT_STATE = {
   productsCount: 0,
   categories: [],
   oneProduct: null,
+  reviews: [],
 };
 
 function reducer(state = INIT_STATE, action) {
@@ -21,6 +22,8 @@ function reducer(state = INIT_STATE, action) {
       return { ...state, oneProduct: action.payload };
     case 'GET_CATEGORIES':
       return { ...state, categories: action.payload };
+    case 'GET_REVIEWS':
+      return { ...state, reviews: action.payload };
     default:
       return state;
   }
@@ -98,17 +101,31 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
+  async function getReviews() {
+    try {
+      const res = await axios(`${API}shop/comments/`);
+      dispatch({
+        type: 'GET_REVIEWS',
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const values = {
     products: state.products,
     productsCount: state.productsCount,
     categories: state.categories,
     oneProduct: state.oneProduct,
+    reviews: state.reviews,
 
     getCategories,
     getProducts,
     getCountProducts,
     getOneProduct,
     addProduct,
+    getReviews,
   };
   return (
     <productContext.Provider value={values}>{children}</productContext.Provider>

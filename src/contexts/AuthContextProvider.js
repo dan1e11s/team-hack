@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { createContext, useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 export const authContext = createContext();
 export const useAuth = () => useContext(authContext);
@@ -11,8 +10,6 @@ const AuthContextProvider = ({ children }) => {
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
   const [currentUser, setCurrentUser] = useState(false);
-
-  const navigate = useNavigate();
 
   const register = async (formData) => {
     try {
@@ -83,7 +80,7 @@ const AuthContextProvider = ({ children }) => {
           Authorization,
         },
       };
-      const res = await axios.delete(`${API}account/delete-account/`, config);
+      await axios.delete(`${API}account/delete-account/`, config);
       handleLogout();
     } catch (err) {
       console.log(err);

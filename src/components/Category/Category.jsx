@@ -4,7 +4,6 @@ import './Category.css';
 
 const Category = () => {
   const { categories, getCategories } = useProduct();
-  console.log(categories);
 
   useEffect(() => {
     getCategories();

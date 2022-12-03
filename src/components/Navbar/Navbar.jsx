@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import './Navbar.css';
 import SideBar from '../SideBar/SideBar';
 import Modal from '../Modal/Modal';
@@ -149,7 +148,8 @@ const Navbar = () => {
               handleOpen();
             }
           }}
-          style={{ display: currentUser ? "none" : "block" }}>
+          style={{ display: currentUser ? 'none' : 'block' }}
+        >
           <h3>Вход</h3>
         </button>
         {currentUser ? <ShoppingBagIcon /> : null}
@@ -158,3 +158,5 @@ const Navbar = () => {
     </nav>
   );
 };
+
+export default Navbar;
