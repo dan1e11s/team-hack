@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, TextField, Button } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import Modal from '@mui/material/Modal';
 import { styled } from '@mui/material/styles';
 import EmailIcon from '@mui/icons-material/Email';
+import { useAuth } from '../../contexts/AuthContextProvider';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  minWidth: 400,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -29,6 +32,73 @@ const ColorButton = styled(Button)(({ theme }) => ({
 const ModalBox = ({ open, handleClose }) => {
   const [activeLog, setActiveLog] = useState(true);
   const [activeReg, setActiveReg] = useState(false);
+
+  const { register, login, success } = useAuth();
+
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+
+  const navigate = useNavigate();
+
+  async function createUser() {
+    if (
+      !username.trim() ||
+      !email.trim() ||
+      !password.trim() ||
+      !passwordConfirm.trim()
+    ) {
+      alert('Some inputs are empty!');
+      return;
+    }
+    let formData = new FormData();
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('password_confirm', passwordConfirm);
+
+    await register(formData);
+
+    setUsername('');
+    setEmail('');
+    setPassword('');
+    setPasswordConfirm('');
+    handleClose();
+  }
+
+  useEffect(() => {
+    if (
+      success === 'Спасибо за регистрацию Активируйте свой аккаунт через почту'
+    ) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Successfully!',
+        text: `${success}`,
+      });
+    } else if (success) {
+      Swal.fire({
+        icon: 'error',
+        title: 'OOOPS...',
+        text: `${success}`,
+      });
+    }
+  }, [success]);
+
+  function loginUser() {
+    if (!username.trim() || !password.trim()) {
+      alert('Some inputs are empty!');
+      return;
+    }
+
+    let formData = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
+
+    login(formData, username);
+    navigate('/');
+    handleClose();
+  }
 
   return (
     <Modal
@@ -82,9 +152,10 @@ const ModalBox = ({ open, handleClose }) => {
           >
             <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
             <TextField
-              id="input-with-sx"
+              value={username}
               label="Enter username"
               variant="standard"
+              onChange={(e) => setUsername(e.target.value)}
             />
           </Box>
           <Box
@@ -97,12 +168,16 @@ const ModalBox = ({ open, handleClose }) => {
           >
             <VpnKeyIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
             <TextField
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               type="password"
               label="Enter your password"
               variant="standard"
             />
           </Box>
-          <ColorButton variant="contained">Вход</ColorButton>
+          <ColorButton variant="contained" onClick={loginUser}>
+            Вход
+          </ColorButton>
           <div style={{ marginTop: '20px' }}>
             <p className="forgot-text">Забыли пароль?</p>
           </div>
@@ -125,7 +200,8 @@ const ModalBox = ({ open, handleClose }) => {
           >
             <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
             <TextField
-              id="input-with-sx"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               label="Enter username"
               variant="standard"
             />
@@ -140,7 +216,9 @@ const ModalBox = ({ open, handleClose }) => {
           >
             <EmailIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
             <TextField
-              id="input-with-sx"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               label="Enter your email"
               variant="standard"
             />
@@ -155,6 +233,8 @@ const ModalBox = ({ open, handleClose }) => {
           >
             <VpnKeyIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
             <TextField
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               type="password"
               label="Enter password"
               variant="standard"
@@ -170,12 +250,16 @@ const ModalBox = ({ open, handleClose }) => {
           >
             <VpnKeyIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
             <TextField
+              value={passwordConfirm}
+              onChange={(e) => setPasswordConfirm(e.target.value)}
               type="password"
               label="Confirm password"
               variant="standard"
             />
           </Box>
-          <ColorButton variant="contained">Регистрация</ColorButton>
+          <ColorButton variant="contained" onClick={createUser}>
+            Регистрация
+          </ColorButton>
         </Box>
       </Box>
     </Modal>

@@ -1,0 +1,54 @@
+.shop-box {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.shop-wrapper {
+  margin-top: 170px;
+}
+
+.shop-title {
+  font-size: 55px;
+  font-weight: normal;
+}
+
+.shop-link {
+  position: relative;
+  text-decoration: none;
+  color: #000;
+  font-size: 17px;
+  transition: all 0.5s ease;
+}
+
+.bread-link:nth-child(even) {
+  color: red;
+}
+
+.shop-link:hover {
+  color: #6e9c9f;
+}
+
+.shop-breadcrumbs {
+  margin-bottom: 100px;
+}
+
+.breadcrumbs-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shop-add-product {
+  display: flex;
+  align-items: center;
+}
+
+.shop-add-product p {
+  transition: all 0.5s ease;
+}
+
+.shop-add-product p:hover {
+  cursor: pointer;
+  color: #6e9c9f;
+}

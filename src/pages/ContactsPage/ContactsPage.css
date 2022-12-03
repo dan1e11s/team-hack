@@ -1,0 +1,140 @@
+.contacts {
+  font-weight: 500;
+  margin: 0 11%;
+}
+.contactsTop {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.contactsPage_h1 {
+  font-weight: 500;
+  font-size: 55px;
+}
+.morsel {
+  display: flex;
+  padding-bottom: 45px;
+  font-size: 18px;
+  align-items: flex-start;
+}
+#morsel1:hover {
+  cursor: pointer;
+  border-bottom: 1px solid #6e9c9f;
+}
+#morsel2 {
+  color: #909090;
+  margin-left: 10px;
+}
+#morsel3 {
+  color: #909090;
+  margin-left: 10px;
+}
+.contactsPage_main_a {
+  display: flex;
+  align-items: center;
+}
+.contacts-wrapper {
+  margin-top: 130px;
+  display: block;
+}
+.rowText {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.upperText {
+  font-family: "Raleway";
+  font-weight: 500;
+  font-size: 17px;
+}
+.lowerText {
+  font-family: "Raleway";
+  font-weight: 500;
+  font-size: 20px;
+}
+.form_ContactsPage {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 30%;
+}
+.h3_formColumn {
+  margin-top: 130px;
+  margin-bottom: 62px;
+  font-weight: 500;
+  font-size: 25px;
+}
+.input_form {
+  border: none;
+  border-bottom: 1px solid #000;
+  font-family: inherit;
+  font-size: 15px;
+  width: 100%;
+  padding-bottom: 16px;
+  margin-bottom: 35px;
+  outline: none;
+}
+.input_form_text {
+  width: 443px;
+  height: 134px;
+  border: none;
+  border-bottom: 1px solid #000;
+  font-family: inherit;
+  font-size: 15px;
+  width: 100%;
+  padding-bottom: 16px;
+  margin-bottom: 35px;
+  outline: none;
+}
+.btn_ContactsPage {
+  width: 100%;
+  padding: 20px 50px;
+  background: #6e9c9f;
+  border-radius: 0px;
+  transition: all 0.5s ease;
+  font-size: 17px;
+  color: #fff;
+  border: 0;
+  border-bottom: none;
+  cursor: pointer;
+  margin-bottom: 120px;
+}
+.btn_ContactsPage:hover {
+  background: #538184;
+}
+@media (max-width: 768px) {
+  .contactsPage_h1 {
+    font-size: 40px;
+  }
+  .rowText {
+    flex-wrap: wrap;
+  }
+  .upperText {
+    font-size: 13px;
+  }
+  .form_ContactsPage {
+    width: 50%;
+  }
+}
+@media (max-width: 425px) {
+  .rowText {
+    flex-wrap: wrap;
+  }
+  .form_ContactsPage {
+    width: 100%;
+  }
+}
+@media (max-width: 375px) {
+  .contactsPage_h1 {
+    font-size: 33px;
+  }
+  .morsel {
+    font-size: 17px;
+  }
+  .form_ContactsPage {
+    width: 100%;
+  }
+}

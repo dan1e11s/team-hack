@@ -1,0 +1,80 @@
+.shop-card {
+  width: 345px;
+  position: relative;
+}
+
+.shop-card-img {
+  height: 100%;
+}
+
+.shop-img-wrapper {
+  position: relative;
+  height: 500px;
+}
+
+.shop-img-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(110, 156, 159, 0.5);
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.8s ease;
+}
+
+.shop-img-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.8s linear;
+}
+
+.shop-img-wrapper:hover::before,
+.shop-img-wrapper::after {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.shop-card-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  visibility: hidden;
+  transition: all 0.9s ease;
+  cursor: pointer;
+}
+
+.shop-img-wrapper:hover .shop-card-icon {
+  z-index: 2;
+  visibility: visible;
+}
+
+.shop-card-info {
+  text-align: center;
+}
+
+.shop-card-title {
+  font-size: 25px;
+  font-weight: normal;
+  line-height: 1.4em;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.shop-card-title:hover {
+  color: #6e9c9f;
+}
+
+.shop-card-price {
+  font-size: 15px;
+  color: #9c9c9c;
+}

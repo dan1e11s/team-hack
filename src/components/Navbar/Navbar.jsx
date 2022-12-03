@@ -1,15 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import './Navbar.css';
 import SideBar from '../SideBar/SideBar';
 import Modal from '../Modal/Modal';
+import { useAuth } from '../../contexts/AuthContextProvider';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import IconButton from '@mui/material/IconButton';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseAva = () => {
+    setAnchorEl(null);
+  };
+
+  const { currentUser, checkAuth, handleLogout, deleteAccount } = useAuth();
+
+  useEffect(() => {
+    if (localStorage.getItem('tokens')) {
+      checkAuth();
+    }
+  }, []);
 
   const [collapseOpen, setCollapseOpen] = useState(false);
 
@@ -72,10 +96,58 @@ const Navbar = () => {
         </li>
       </ul>
       <div className="nav-acc">
-        <PermIdentityIcon />
-        <button className="nav-btn" onClick={handleOpen}>
-          Вход
+        {currentUser ? (
+          <div>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleCloseAva}
+            >
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  handleLogout();
+                }}
+              >
+                Logout
+              </MenuItem>
+              <MenuItem onClick={handleClose}>Delete Account</MenuItem>
+            </Menu>
+          </div>
+        ) : null}
+        <button
+          className="nav-btn"
+          onClick={() => {
+            if (!currentUser) {
+              handleOpen();
+            }
+          }}
+        >
+          <h3 style={{ textTransform: 'uppercase' }}>
+            {currentUser ? currentUser : 'Вход'}
+          </h3>
         </button>
+        {currentUser ? <ShoppingBagIcon /> : null}
       </div>
       <Modal open={open} handleClose={handleClose} />
     </nav>

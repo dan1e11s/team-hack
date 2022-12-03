@@ -1,0 +1,35 @@
+.category-wrapper {
+  display: flex;
+  column-gap: 25px;
+  align-items: center;
+}
+
+.category-block {
+  width: 160px;
+  height: 60px;
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-active {
+  color: #fff;
+  background-color: #000;
+  width: 160px;
+  height: 60px;
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-title {
+  transition: all 0.5s ease;
+  font-size: 17px;
+}
+
+.category-title:hover {
+  cursor: pointer;
+  color: #6e9c9f;
+}
