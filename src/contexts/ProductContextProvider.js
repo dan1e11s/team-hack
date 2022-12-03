@@ -6,16 +6,18 @@ export const useProduct = () => useContext(productContext);
 
 const INIT_STATE = {
   products: [],
+  productsCount: 0,
   categories: [],
   oneProduct: null,
-  pages: 0,
 };
 
 function reducer(state = INIT_STATE, action) {
   switch (action.type) {
     case "GET_ALL_PRODUCTS":
       return { ...state, products: action.payload.results };
-    case "GET_ONE_PRODUCT":
+    case 'GET_COUNT_PRODUCTS':
+      return { ...state, productsCount: action.payload.count };
+    case 'GET_ONE_PRODUCT':
       return { ...state, oneProduct: action.payload };
     case "GET_CATEGORIES":
       return { ...state, categories: action.payload };
@@ -32,7 +34,7 @@ const ProductContextProvider = ({ children }) => {
   async function getProducts() {
     try {
       const { data } = await axios(
-        `${API}shop/product_filter${window.location.search}`
+        `${API}shop/product_filter/${window.location.search}`
       );
       dispatch({
         type: "GET_ALL_PRODUCTS",
@@ -43,9 +45,21 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
+  async function getCountProducts() {
+    try {
+      const { data } = await axios(`${API}shop/products/`);
+      dispatch({
+        type: 'GET_COUNT_PRODUCTS',
+        payload: data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async function getOneProduct(id) {
     try {
-      const { data } = await axios(`${API}shop/products/${id}/`);
+      const { data } = await axios(`${API}shop/product_filter/${id}/`);
       dispatch({
         type: 'GET_ONE_PRODUCT',
         payload: data,
@@ -79,12 +93,13 @@ const ProductContextProvider = ({ children }) => {
 
   const values = {
     products: state.products,
+    productsCount: state.productsCount,
     categories: state.categories,
     oneProduct: state.oneProduct,
-    pages: state.page,
 
     getCategories,
     getProducts,
+    getCountProducts,
     getOneProduct,
     addProduct,
   };

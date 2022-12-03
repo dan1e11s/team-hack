@@ -131,7 +131,14 @@ const Navbar = () => {
               >
                 Logout
               </MenuItem>
-              <MenuItem onClick={handleClose}>Delete Account</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  deleteAccount();
+                }}
+              >
+                Delete Account
+              </MenuItem>
             </Menu>
           </div>
         ) : null}
