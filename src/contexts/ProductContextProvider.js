@@ -1,5 +1,5 @@
-import axios from "axios";
-import React, { createContext, useContext, useReducer } from "react";
+import axios from 'axios';
+import React, { createContext, useContext, useReducer } from 'react';
 
 export const productContext = createContext();
 export const useProduct = () => useContext(productContext);
@@ -13,20 +13,20 @@ const INIT_STATE = {
 
 function reducer(state = INIT_STATE, action) {
   switch (action.type) {
-    case "GET_ALL_PRODUCTS":
+    case 'GET_ALL_PRODUCTS':
       return { ...state, products: action.payload.results };
     case 'GET_COUNT_PRODUCTS':
       return { ...state, productsCount: action.payload.count };
     case 'GET_ONE_PRODUCT':
       return { ...state, oneProduct: action.payload };
-    case "GET_CATEGORIES":
+    case 'GET_CATEGORIES':
       return { ...state, categories: action.payload };
     default:
       return state;
   }
 }
 
-const API = "http://34.116.219.34/";
+const API = 'http://34.116.219.34/';
 
 const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
@@ -37,7 +37,7 @@ const ProductContextProvider = ({ children }) => {
         `${API}shop/product_filter/${window.location.search}`
       );
       dispatch({
-        type: "GET_ALL_PRODUCTS",
+        type: 'GET_ALL_PRODUCTS',
         payload: data,
       });
     } catch (err) {
@@ -73,7 +73,7 @@ const ProductContextProvider = ({ children }) => {
     try {
       const { data } = await axios(`${API}shop/categories`);
       dispatch({
-        type: "GET_CATEGORIES",
+        type: 'GET_CATEGORIES',
         payload: data,
       });
     } catch (err) {
@@ -83,8 +83,15 @@ const ProductContextProvider = ({ children }) => {
 
   async function addProduct(newProduct, navigate) {
     try {
-      await axios.post(`${API}shop/products/`, newProduct);
-      navigate("/shop");
+      const tokens = JSON.parse(localStorage.getItem('tokens'));
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      await axios.post(`${API}shop/products/`, newProduct, config);
+      navigate('/shop');
       getProducts();
     } catch (err) {
       console.log(err);

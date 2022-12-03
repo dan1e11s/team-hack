@@ -139,10 +139,11 @@ const Navbar = () => {
             if (!currentUser) {
               handleOpen();
             }
+          }}
+          style={{ display: currentUser ? 'none' : 'block' }}
+        >
+          <h3>Вход</h3>
           }}>
-          <h3 style={{ textTransform: "uppercase" }}>
-            {currentUser ? currentUser : "Вход"}
-          </h3>
         </button>
         {currentUser ? <ShoppingBagIcon /> : null}
       </div>
