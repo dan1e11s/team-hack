@@ -98,6 +98,9 @@ const ModalBox = ({ open, handleClose }) => {
     login(formData, username);
     navigate('/');
     handleClose();
+
+    setUsername('');
+    setPassword('');
   }
 
   return (

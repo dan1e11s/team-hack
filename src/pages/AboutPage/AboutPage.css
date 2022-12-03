@@ -117,19 +117,22 @@
     margin-left: 40px;
   }
   .block_1 {
-    width: 1000px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
   .text_block1 {
-    width: 400px;
-    margin-right: 40px;
+    /* width: 400px; */
+    /* margin-right: 40px; */
+    width: 100%;
   }
   .img1_aboutPage {
     width: 350px;
-    margin-left: 45px;
+    /* margin-left: 45px; */
     height: fit-content;
   }
   .block_2 {
-    width: 1000px;
+    width: 100%;
   }
   .second_h3 {
     width: 450px;
@@ -142,7 +145,7 @@
   .img2_aboutPage {
     width: 350px;
     height: 450px;
-    margin-right: 40px;
+    /* margin-right: 40px; */
   }
 }
 @media (max-width: 768px) {

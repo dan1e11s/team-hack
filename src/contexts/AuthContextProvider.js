@@ -65,7 +65,7 @@ const AuthContextProvider = ({ children }) => {
       console.log(res);
     } catch (err) {
       console.log(err);
-      handleLogout();
+      // handleLogout();
     }
   }
 

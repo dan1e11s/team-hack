@@ -1,6 +1,6 @@
-import React from 'react';
-import '../AboutPage/AboutPage.css';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import "../AboutPage/AboutPage.css";
+import { useNavigate } from "react-router-dom";
 
 const AboutPage = () => {
   const navigate = useNavigate();
@@ -12,8 +12,7 @@ const AboutPage = () => {
           <a
             className="aboutPage_main_a"
             id="breadcrumb1"
-            onClick={() => navigate('/')}
-          >
+            onClick={() => navigate("/")}>
             Главное
           </a>
           <a className="aboutPage_main_a" id="breadcrumb2">
@@ -68,12 +67,11 @@ const AboutPage = () => {
           </div>
           <div
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              width: '100%',
-              justifyContent: 'center',
-            }}
-          >
+              display: "flex",
+              alignItems: "center",
+              width: "100%",
+              justifyContent: "center",
+            }}>
             <img
               className="img2_aboutPage"
               src="https://timdelux.github.io/img/about2.jpg"
@@ -81,8 +79,8 @@ const AboutPage = () => {
             />
           </div>
         </div>
-        <div className="divBtn" style={{ width: '100%', textAlign: 'center' }}>
-          <button className="btn_aboutPage" onClick={() => navigate('/shop')}>
+        <div className="divBtn" style={{ width: "100%", textAlign: "center" }}>
+          <button className="btn_aboutPage" onClick={() => navigate("/shop")}>
             Перейти в магазин
           </button>
         </div>
