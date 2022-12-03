@@ -140,10 +140,8 @@ const Navbar = () => {
               handleOpen();
             }
           }}
-          style={{ display: currentUser ? 'none' : 'block' }}
-        >
+          style={{ display: currentUser ? "none" : "block" }}>
           <h3>Вход</h3>
-          }}>
         </button>
         {currentUser ? <ShoppingBagIcon /> : null}
       </div>
