@@ -8,12 +8,12 @@ const INIT_STATE = {
   products: [],
   categories: [],
   oneProduct: null,
+  pages: 0,
 };
 
 function reducer(state = INIT_STATE, action) {
   switch (action.type) {
     case 'GET_ALL_PRODUCTS':
-    case 'GET_SEARCH':
       return { ...state, products: action.payload.results };
     case 'GET_ONE_PRODUCT':
       return { ...state, oneProduct: action.payload };
@@ -32,7 +32,7 @@ const ProductContextProvider = ({ children }) => {
   async function getProducts() {
     try {
       const { data } = await axios(
-        `${API}shop/products${window.location.search}`
+        `${API}shop/product_filter${window.location.search}`
       );
       dispatch({
         type: 'GET_ALL_PRODUCTS',
@@ -77,30 +77,15 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
-  async function getSearch() {
-    try {
-      const res = await axios(
-        `${API}shop/product_filter/${window.location.search}`
-      );
-      console.log(res);
-      dispatch({
-        type: 'GET_SEARCH',
-        payload: res.data,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   const values = {
     products: state.products,
     categories: state.categories,
     oneProduct: state.oneProduct,
+    pages: state.page,
 
     getCategories,
     getProducts,
     getOneProduct,
-    getSearch,
     addProduct,
   };
   return (
