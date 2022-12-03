@@ -85,10 +85,6 @@
   }
 }
 @media all and (max-width: 768px) {
-  .payment-block {
-    /* background: none;
-    background-color: black; */
-  }
   .payment-wrapper {
     width: 65%;
     margin: 0 auto;
