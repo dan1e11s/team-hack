@@ -5,13 +5,15 @@ import { useSearchParams } from 'react-router-dom';
 import './PaginationList.css';
 
 export default function PaginationList() {
-  const { getProducts, products } = useProduct();
+  const { getProducts, getCountProducts, productsCount, products } =
+    useProduct();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     getProducts();
+    getCountProducts();
   }, [searchParams]);
 
   useEffect(() => {
@@ -29,7 +31,7 @@ export default function PaginationList() {
       className="pagination-block"
       page={currentPage}
       onChange={handlePage}
-      count={Math.ceil(products.length / 9) + 1}
+      count={Math.ceil(productsCount / 9)}
       variant="outlined"
       shape="rounded"
     />
