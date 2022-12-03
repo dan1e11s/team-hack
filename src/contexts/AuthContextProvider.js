@@ -1,20 +1,20 @@
-import axios from 'axios';
-import React, { createContext, useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import React, { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const authContext = createContext();
 export const useAuth = () => useContext(authContext);
 
-export const API = 'http://34.116.219.34/';
+export const API = "http://34.116.219.34/";
 
 const AuthContextProvider = ({ children }) => {
-  const [success, setSuccess] = useState('');
-  const [error, setError] = useState('');
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
   const [currentUser, setCurrentUser] = useState(false);
 
   const navigate = useNavigate();
 
-  const register = async (formData) => {
+  const register = async formData => {
     try {
       const { data } = await axios.post(`${API}account/register/`, formData);
       setSuccess(data);
@@ -30,8 +30,8 @@ const AuthContextProvider = ({ children }) => {
     try {
       const res = await axios.post(`${API}account/login/`, formData);
       console.log(res);
-      localStorage.setItem('tokens', JSON.stringify(res.data));
-      localStorage.setItem('username', username);
+      localStorage.setItem("tokens", JSON.stringify(res.data));
+      localStorage.setItem("username", username);
       setCurrentUser(username);
     } catch (err) {
       console.log(err);
@@ -39,9 +39,9 @@ const AuthContextProvider = ({ children }) => {
   };
 
   async function checkAuth() {
-    console.log('Check Auth Worked!');
+    console.log("Check Auth Worked!");
     try {
-      const tokens = JSON.parse(localStorage.getItem('tokens'));
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
       const Authorization = `Bearer ${tokens.access}`;
       const config = {
         headers: {
@@ -54,13 +54,13 @@ const AuthContextProvider = ({ children }) => {
         config
       );
       localStorage.setItem(
-        'tokens',
+        "tokens",
         JSON.stringify({
           access: res.data.access,
           refresh: tokens.refresh,
         })
       );
-      const email = localStorage.getItem('email');
+      const email = localStorage.getItem("email");
       setCurrentUser(email);
       console.log(res);
     } catch (err) {
@@ -70,8 +70,8 @@ const AuthContextProvider = ({ children }) => {
   }
 
   function handleLogout() {
-    localStorage.removeItem('tokens');
-    localStorage.removeItem('username');
+    localStorage.removeItem("tokens");
+    localStorage.removeItem("username");
     setCurrentUser(false);
   }
 
