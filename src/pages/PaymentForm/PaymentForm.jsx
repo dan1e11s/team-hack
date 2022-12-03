@@ -1,38 +1,31 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../PaymentForm/PaymentForm.css";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import Slide from "@mui/material/Slide";
-import TagFacesRoundedIcon from "@mui/icons-material/TagFacesRounded";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import Swal from "sweetalert2";
 
 const PaymentForm = () => {
   const navigate = useNavigate();
-  const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    // navigate("/product");
+  const alerted = () => {
+    Swal.fire({
+      icon: "success",
+      title: "Заказ успешно оформлен!",
+      confirmButtonText: "Ok",
+    }).then(result => {
+      if (result.isConfirmed) {
+        navigate("/shop");
+      }
+    });
   };
 
   return (
     <div className="payment">
       <div className="aboutTop">
-        <h1 className="aboutPage_h1">Оформление заказа</h1>
+        <h1 className="paymentFormH1">Оформление заказа</h1>
         <div className="breadcrumbs">
           <a
             className="aboutPage_main_a"
@@ -73,7 +66,7 @@ const PaymentForm = () => {
               placeholder="CVV код"
             />
           </form>
-          <div className="order">
+          <div className="order" id="order1">
             <h2 className="paymentH2">Ваш заказ</h2>
             <div className="paymentUls">
               <ul className="paymentUl">Товар</ul>
@@ -115,7 +108,7 @@ const PaymentForm = () => {
             </FormControl>
             <button
               onClick={() => {
-                handleClickOpen();
+                alerted();
               }}
               className="payment-btn">
               Разместить заказ
@@ -123,21 +116,6 @@ const PaymentForm = () => {
           </div>
         </div>
       </div>
-      <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description">
-        <DialogContent sx={{ backgroundColor: "#64ffda" }}>
-          <DialogContentText
-            id="alert-dialog-slide-description"
-            sx={{ display: "flex", alignItems: "center", color: "white" }}>
-            <TagFacesRoundedIcon />
-            Thank you for your purchase!
-          </DialogContentText>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
