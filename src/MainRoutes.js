@@ -22,6 +22,7 @@ const MainRoutes = () => {
             <Route path="/contacts" element={<ContactsPage />} />
             <Route path="/add" element={<AddProductPage />} />
             <Route path="/products/:id" element={<DetailsPage />} />
+            <Route path="/payment" element={<PaymentForm />} />
           </Route>
         </Routes>
       </AuthContextProvider>
