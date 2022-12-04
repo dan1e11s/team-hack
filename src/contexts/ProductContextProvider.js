@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import React, { createContext, useContext, useReducer } from "react";
 import { useLocation } from "react-router-dom";
@@ -34,7 +33,7 @@ function reducer(state = INIT_STATE, action) {
   }
 }
 
-const API = 'http://34.91.217.40/';
+const API = "http://34.91.217.40/";
 
 const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
@@ -84,7 +83,7 @@ const ProductContextProvider = ({ children }) => {
     try {
       const { data } = await axios(`${API}shop/product_filter/${id}/`);
       dispatch({
-        type: 'GET_ONE_PRODUCT',
+        type: "GET_ONE_PRODUCT",
         payload: data,
       });
     } catch (err) {
@@ -155,12 +154,7 @@ const ProductContextProvider = ({ children }) => {
 
   async function createComment(id, content) {
     try {
-      const res = await axios(`${API}shop/comments/`);
-      dispatch({
-        type: "GET_REVIEWS",
-        payload: res.data,
-      });
-      const tokens = JSON.parse(localStorage.getItem('tokens'));
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
       const Authorization = `Bearer ${tokens.access}`;
       const config = {
         headers: {
@@ -177,7 +171,7 @@ const ProductContextProvider = ({ children }) => {
 
   async function deleteComment(productId, commentId) {
     try {
-      const tokens = JSON.parse(localStorage.getItem('tokens'));
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
       const Authorization = `Bearer ${tokens.access}`;
       const config = {
         headers: {
