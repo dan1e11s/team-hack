@@ -19,10 +19,21 @@
   transition: all 0.2s ease;
   margin-bottom: 25px;
 }
+#deleteside {
+  margin-bottom: 9px;
+}
+#userName {
+  margin-top: 4px;
+  margin-left: 5px;
+}
 
 .collapse-list-item:hover {
   cursor: pointer;
   color: #6e9c9f;
+}
+#enterbtn {
+  font-size: 15px;
+  font-weight: bold;
 }
 @media all and (min-width: 990px) {
   .collapse-box {

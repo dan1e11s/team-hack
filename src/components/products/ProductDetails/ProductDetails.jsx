@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
-import './ProductDetails.css';
-import { Link, useNavigate } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import { IconButton } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import Ratings from '../../Ratings/Ratings';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FormDialog from '../../FormDialog/FormDialog';
-import { useProduct } from '../../../contexts/ProductContextProvider';
+import React, { useState } from "react";
+import "./ProductDetails.css";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { IconButton } from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import Ratings from "../../Ratings/Ratings";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import FormDialog from "../../FormDialog/FormDialog";
+import { useProduct } from "../../../contexts/ProductContextProvider";
+import { useCart } from "../../../contexts/CardContextProvider";
 
 const ProductDetails = ({ oneProduct, reviews }) => {
+  const { addProductToCart } = useCart();
   const { deleteProduct } = useProduct();
   const [count, setCount] = useState(1);
+  const user = localStorage.getItem("username");
 
   const [open, setOpen] = useState(false);
 
@@ -41,7 +44,7 @@ const ProductDetails = ({ oneProduct, reviews }) => {
               <Link to="/" className="shop-link">
                 Главная
               </Link>
-              <span style={{ color: '#9c9c9c' }}>
+              <span style={{ color: "#9c9c9c" }}>
                 &nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;&nbsp;
                 {oneProduct.title}
               </span>
@@ -60,9 +63,9 @@ const ProductDetails = ({ oneProduct, reviews }) => {
                 </div>
                 <div className="details-price">
                   <p>
-                    ${oneProduct.price}{' '}
+                    ${oneProduct.price}{" "}
                     <LocalOfferIcon
-                      sx={{ marginLeft: '5px', color: '#FF6D75' }}
+                      sx={{ marginLeft: "5px", color: "#FF6D75" }}
                     />
                   </p>
                 </div>
@@ -73,8 +76,7 @@ const ProductDetails = ({ oneProduct, reviews }) => {
                         aria-label="increase"
                         onClick={() => {
                           setCount(Math.max(count - 1, 1));
-                        }}
-                      >
+                        }}>
                         <RemoveIcon fontSize="small" />
                       </Button>
                       {count}
@@ -82,32 +84,33 @@ const ProductDetails = ({ oneProduct, reviews }) => {
                         aria-label="increase"
                         onClick={() => {
                           setCount(count + 1);
-                        }}
-                      >
+                        }}>
                         <AddIcon fontSize="small" />
                       </Button>
                     </div>
                   </div>
                   <div>
-                    <button className="add-cart">Добавить в корзину</button>
+                    <button
+                      className="add-cart"
+                      onClick={() => addProductToCart(oneProduct)}>
+                      Добавить в корзину
+                    </button>
                   </div>
                   <div className="details-like">
                     <IconButton>
-                      <FavoriteBorderIcon sx={{ color: '#6e9c9f' }} />
+                      <FavoriteBorderIcon sx={{ color: "#6e9c9f" }} />
                     </IconButton>
                   </div>
                 </div>
-                <div className="adm-btns">
+                <div className={` ${user === "admin" ? "adm-btns" : "nosee"}`}>
                   <IconButton
                     color="success"
-                    onClick={() => navigate(`/edit/${oneProduct.slug}`)}
-                  >
+                    onClick={() => navigate(`/edit/${oneProduct.slug}`)}>
                     <EditIcon />
                   </IconButton>
                   <IconButton
                     onClick={() => deleteProduct(oneProduct.slug, navigate)}
-                    color="error"
-                  >
+                    color="error">
                     <DeleteIcon />
                   </IconButton>
                 </div>
@@ -121,7 +124,7 @@ const ProductDetails = ({ oneProduct, reviews }) => {
               </p>
             </div>
             <Ratings />
-            <div style={{ marginBottom: '20px' }}>
+            <div style={{ marginBottom: "20px" }}>
               <button onClick={handleClickOpen} className="create-reviews">
                 Написать отзыв
               </button>

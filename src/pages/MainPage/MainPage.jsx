@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "../MainPage/MainPage.css";
 import firstpng from "../../media/quality1.png";
 import secondpng from "../../media/mdi-light_cog.png";
 import thirdpng from "../../media/hand1.png";
 import ecoIMG from "../../media/ecomainIMG.webp";
 import { useNavigate } from "react-router-dom";
+import TopTenProducts from "../../components/TopTenProducts/TopTenProducts";
 
-const MainPage = () => {
+const MainPage = item => {
   const navigate = useNavigate();
+
   return (
     <div className="mainpage">
       <div className="mainTop">
@@ -29,6 +31,7 @@ const MainPage = () => {
           alt="mainphoto"
         />
       </div>
+      <TopTenProducts key={item.updated_at} item={item} />
       <div className="mainContent">
         <h2 className="mainContentText">Что для нас важно</h2>
         <div className="mainCards">

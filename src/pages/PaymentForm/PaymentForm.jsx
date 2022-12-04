@@ -6,9 +6,21 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import Swal from "sweetalert2";
+import { useCart } from "../../contexts/CardContextProvider";
+import { useEffect } from "react";
 
 const PaymentForm = () => {
+  const { getCart, cart, changeProductCount, deleteProductInCart } = useCart();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getCart();
+  }, []);
+
+  function cartCleaner() {
+    localStorage.removeItem("cart");
+    getCart();
+  }
 
   const alerted = () => {
     Swal.fire({
@@ -17,6 +29,7 @@ const PaymentForm = () => {
       confirmButtonText: "Ok",
     }).then(result => {
       if (result.isConfirmed) {
+        cartCleaner();
         navigate("/shop");
       }
     });
@@ -69,9 +82,22 @@ const PaymentForm = () => {
           <div className="order" id="order1">
             <h2 className="paymentH2">Ваш заказ</h2>
             <div className="paymentUls">
-              <ul className="paymentUl">Товар</ul>
-              <ul className="paymentUl">Цена</ul>
+              <ul className="paymentUl">
+                <h3 className="paymentH3">Товар</h3>
+                {cart?.products.map(elem => (
+                  <li className="paymentLi">{elem.getOneProduct.title}</li>
+                ))}
+              </ul>
+              <ul className="paymentUl">
+                <h3 className="paymentH3">Цена</h3>
+                {cart?.products.map(elem => (
+                  <li className="paymentLi">{elem.getOneProduct.price}$</li>
+                ))}
+              </ul>
             </div>
+            {cart?.products.map(elem => (
+              <h2 className="paymentH2">Общая цена: {cart.totalPrice}</h2>
+            ))}
           </div>
         </div>
         <div className="paymentBot">

@@ -12,7 +12,15 @@
   font-size: 55px;
   font-weight: normal;
 }
-
+.see {
+  display: block;
+}
+.nosee {
+  display: none !important;
+}
+#bread {
+  padding-bottom: 0px;
+}
 .shop-link {
   position: relative;
   text-decoration: none;
