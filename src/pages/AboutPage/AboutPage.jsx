@@ -11,14 +11,14 @@ const AboutPage = () => {
         <div className="breadcrumbs">
           <a
             className="aboutPage_main_a"
-            id="breadcrumb1"
+            class="breadcrumb1"
             onClick={() => navigate("/")}>
             Главное
           </a>
-          <a className="aboutPage_main_a" id="breadcrumb2">
+          <a className="aboutPage_main_a" class="breadcrumb2">
             -
           </a>
-          <a className="aboutPage_main_a" id="breadcrumb3">
+          <a className="aboutPage_main_a" class="breadcrumb3">
             О бренде
           </a>
         </div>

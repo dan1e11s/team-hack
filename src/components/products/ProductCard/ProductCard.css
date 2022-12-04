@@ -11,9 +11,13 @@
   position: relative;
   height: 500px;
 }
+.shop-wrapper {
+  margin-top: 75px !important;
+  margin-bottom: 30px;
+}
 
 .shop-img-wrapper::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -26,7 +30,7 @@
 }
 
 .shop-img-wrapper::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;

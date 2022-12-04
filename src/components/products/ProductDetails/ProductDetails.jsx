@@ -13,10 +13,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FormDialog from '../../FormDialog/FormDialog';
 import { useProduct } from '../../../contexts/ProductContextProvider';
 import ColorList from '../../ColorList/ColorList';
+import { useProduct } from "../../../contexts/ProductContextProvider";
+import { useCart } from "../../../contexts/CardContextProvider";
 
 const ProductDetails = ({ oneProduct }) => {
+const { addProductToCart } = useCart();
+  const { deleteProduct } = useProduct();
   const { deleteProduct, deleteComment } = useProduct();
   const [count, setCount] = useState(1);
+  const user = localStorage.getItem("username");
 
   console.log(oneProduct);
 
@@ -44,7 +49,7 @@ const ProductDetails = ({ oneProduct }) => {
               <Link to="/" className="shop-link">
                 Главная
               </Link>
-              <span style={{ color: '#9c9c9c' }}>
+              <span style={{ color: "#9c9c9c" }}>
                 &nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;&nbsp;
                 {oneProduct.title}
               </span>
@@ -65,7 +70,7 @@ const ProductDetails = ({ oneProduct }) => {
                   <p className="details-price">
                     Цена: ${oneProduct.price}
                     <LocalOfferIcon
-                      sx={{ marginLeft: '5px', color: '#FF6D75' }}
+                      sx={{ marginLeft: "5px", color: "#FF6D75" }}
                     />
                   </p>
                   <p className="details-consists">
@@ -80,8 +85,7 @@ const ProductDetails = ({ oneProduct }) => {
                         aria-label="increase"
                         onClick={() => {
                           setCount(Math.max(count - 1, 1));
-                        }}
-                      >
+                        }}>
                         <RemoveIcon fontSize="small" />
                       </Button>
                       {count}
@@ -89,32 +93,33 @@ const ProductDetails = ({ oneProduct }) => {
                         aria-label="increase"
                         onClick={() => {
                           setCount(count + 1);
-                        }}
-                      >
+                        }}>
                         <AddIcon fontSize="small" />
                       </Button>
                     </div>
                   </div>
                   <div>
-                    <button className="add-cart">Добавить в корзину</button>
+                    <button
+                      className="add-cart"
+                      onClick={() => addProductToCart(oneProduct)}>
+                      Добавить в корзину
+                    </button>
                   </div>
                   <div className="details-like">
                     <IconButton>
-                      <FavoriteBorderIcon sx={{ color: '#6e9c9f' }} />
+                      <FavoriteBorderIcon sx={{ color: "#6e9c9f" }} />
                     </IconButton>
                   </div>
                 </div>
-                <div className="adm-btns">
+                <div className={` ${user === "admin" ? "adm-btns" : "nosee"}`}>
                   <IconButton
                     color="success"
-                    onClick={() => navigate(`/edit/${oneProduct.slug}`)}
-                  >
+                    onClick={() => navigate(`/edit/${oneProduct.slug}`)}>
                     <EditIcon />
                   </IconButton>
                   <IconButton
                     onClick={() => deleteProduct(oneProduct.slug, navigate)}
-                    color="error"
-                  >
+                    color="error">
                     <DeleteIcon />
                   </IconButton>
                 </div>
@@ -128,7 +133,7 @@ const ProductDetails = ({ oneProduct }) => {
               </p>
             </div>
             <Ratings />
-            <div style={{ marginBottom: '20px' }}>
+            <div style={{ marginBottom: "20px" }}>
               <button onClick={handleClickOpen} className="create-reviews">
                 Написать отзыв
               </button>
