@@ -74,15 +74,10 @@ const AddProduct = () => {
           ))}
         </Select>
       </FormControl>
-      {/* <TextField
+      <TextField
+        value={image}
         sx={{ width: 345, marginBottom: '30px' }}
-        type="text"
-        label="Image URL"
-        onChange={(e) => setImage(e.target.value)}
-      /> */}
-      <input
         type="file"
-        accept="image/*"
         onChange={(e) => setImage(e.target.files[0])}
       />
       <button className="add-btn" onClick={createProduct}>

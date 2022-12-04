@@ -101,6 +101,38 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
+  async function editProduct(slug, editedProduct, navigate) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem('tokens'));
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      await axios.patch(`${API}shop/products/${slug}/`, editedProduct, config);
+      navigate('/shop');
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function deleteProduct(id, navigate) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem('tokens'));
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      await axios.delete(`${API}shop/products/${id}/`, config);
+      navigate('/shop');
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   async function getReviews() {
     try {
       const res = await axios(`${API}shop/comments/`);
@@ -126,6 +158,8 @@ const ProductContextProvider = ({ children }) => {
     getOneProduct,
     addProduct,
     getReviews,
+    deleteProduct,
+    editProduct,
   };
   return (
     <productContext.Provider value={values}>{children}</productContext.Provider>
