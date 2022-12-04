@@ -44,16 +44,16 @@
   margin-bottom: 60px;
 }
 
-.details-price {
-  font-size: 20px;
+.details-text-wrapper {
+  font-size: 15px;
   color: #9c9c9c;
   margin-bottom: 50px;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
 }
 
-.details-price p {
+.details-price {
   display: flex;
   align-items: center;
 }

@@ -12,10 +12,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FormDialog from '../../FormDialog/FormDialog';
 import { useProduct } from '../../../contexts/ProductContextProvider';
+import ColorList from '../../ColorList/ColorList';
 
-const ProductDetails = ({ oneProduct, reviews }) => {
-  const { deleteProduct } = useProduct();
+const ProductDetails = ({ oneProduct }) => {
+  const { deleteProduct, deleteComment } = useProduct();
   const [count, setCount] = useState(1);
+
+  console.log(oneProduct);
 
   const [open, setOpen] = useState(false);
 
@@ -58,14 +61,18 @@ const ProductDetails = ({ oneProduct, reviews }) => {
                 <div className="details-text">
                   <p>{oneProduct.description}</p>
                 </div>
-                <div className="details-price">
-                  <p>
-                    ${oneProduct.price}{' '}
+                <div className="details-text-wrapper">
+                  <p className="details-price">
+                    Цена: ${oneProduct.price}
                     <LocalOfferIcon
                       sx={{ marginLeft: '5px', color: '#FF6D75' }}
                     />
                   </p>
+                  <p className="details-consists">
+                    Состав: {oneProduct.consists_of}
+                  </p>
                 </div>
+                <ColorList oneProduct={oneProduct} />
                 <div className="details-feedback">
                   <div>
                     <div className="count-box">
@@ -117,7 +124,7 @@ const ProductDetails = ({ oneProduct, reviews }) => {
           <div className="reviews-box">
             <div className="reviews-title">
               <p>
-                Отзывы <span>{reviews.count}</span>
+                Отзывы <span>{oneProduct.comments_count}</span>
               </p>
             </div>
             <Ratings />
@@ -126,14 +133,43 @@ const ProductDetails = ({ oneProduct, reviews }) => {
                 Написать отзыв
               </button>
             </div>
-            <FormDialog open={open} handleClose={handleClose} />
+            <FormDialog
+              open={open}
+              handleClose={handleClose}
+              oneProduct={oneProduct}
+            />
             <hr />
             <div>
-              {reviews.count !== 0 ? (
+              {oneProduct.comments_count !== 0 ? (
                 <div>
-                  <p>Виктория</p>
-                  <p>21.12.12</p>
-                  <p>Хорош</p>
+                  {oneProduct.comments?.map((item) => (
+                    <div
+                      key={item.id}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        backgroundColor: '#f5f5f5',
+                        padding: '20px 40px',
+                        marginBottom: '70px',
+                      }}
+                    >
+                      <div>
+                        <p style={{ fontSize: '18px', fontWeight: 'bold' }}>
+                          {item.user}
+                        </p>
+                        <span style={{ color: '#9c9c9c' }}>
+                          {item.created_at.substr(0, 10)}
+                        </span>
+                        <p style={{ fontSize: '20px' }}>{item.text}</p>
+                      </div>
+                      <IconButton
+                        onClick={() => deleteComment(oneProduct.slug, item.id)}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </div>
+                  ))}
                 </div>
               ) : (
                 <h3>Пока нету отзывов</h3>
