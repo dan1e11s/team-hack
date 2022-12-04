@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { createContext, useContext, useReducer } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export const productContext = createContext();
 export const useProduct = () => useContext(productContext);
@@ -33,6 +34,8 @@ const API = 'http://34.116.219.34/';
 
 const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
+
+  const location = useLocation();
 
   async function getProducts() {
     try {
