@@ -64,7 +64,7 @@ const ProductContextProvider = ({ children }) => {
     try {
       const { data } = await axios(`${API}shop/product_filter/${id}/`);
       dispatch({
-        type: 'GET_ONE_PRODUCT',
+        type: "GET_ONE_PRODUCT",
         payload: data,
       });
     } catch (err) {
