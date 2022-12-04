@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { createContext, useContext, useReducer } from 'react';
-import { useLocation } from 'react-router-dom';
 
 export const productContext = createContext();
 export const useProduct = () => useContext(productContext);
@@ -23,25 +22,22 @@ function reducer(state = INIT_STATE, action) {
       return { ...state, oneProduct: action.payload };
     case 'GET_CATEGORIES':
       return { ...state, categories: action.payload };
-    case 'GET_REVIEWS':
-      return { ...state, reviews: action.payload };
     default:
       return state;
   }
 }
 
-const API = 'http://34.116.219.34/';
+const API = 'http://34.91.217.40/';
 
 const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
-
-  const location = useLocation();
 
   async function getProducts() {
     try {
       const { data } = await axios(
         `${API}shop/product_filter/${window.location.search}`
       );
+      console.log(data);
       dispatch({
         type: 'GET_ALL_PRODUCTS',
         payload: data,
@@ -67,7 +63,7 @@ const ProductContextProvider = ({ children }) => {
     try {
       const { data } = await axios(`${API}shop/product_filter/${id}/`);
       dispatch({
-        type: "GET_ONE_PRODUCT",
+        type: 'GET_ONE_PRODUCT',
         payload: data,
       });
     } catch (err) {
@@ -136,13 +132,34 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
-  async function getReviews() {
+  async function createComment(id, content) {
     try {
-      const res = await axios(`${API}shop/comments/`);
-      dispatch({
-        type: 'GET_REVIEWS',
-        payload: res.data,
-      });
+      const tokens = JSON.parse(localStorage.getItem('tokens'));
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios.post(`${API}shop/comments/`, content, config);
+      console.log(res);
+      getOneProduct(id);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function deleteComment(productId, commentId) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem('tokens'));
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      await axios.delete(`${API}shop/comments/${commentId}`, config);
+      getOneProduct(productId);
     } catch (err) {
       console.log(err);
     }
@@ -160,9 +177,10 @@ const ProductContextProvider = ({ children }) => {
     getCountProducts,
     getOneProduct,
     addProduct,
-    getReviews,
     deleteProduct,
     editProduct,
+    createComment,
+    deleteComment,
   };
   return (
     <productContext.Provider value={values}>{children}</productContext.Provider>

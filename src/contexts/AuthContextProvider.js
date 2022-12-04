@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState } from 'react';
 export const authContext = createContext();
 export const useAuth = () => useContext(authContext);
 
-export const API = 'http://34.116.219.34/';
+export const API = 'http://34.91.217.40/';
 
 const AuthContextProvider = ({ children }) => {
   const [success, setSuccess] = useState('');
