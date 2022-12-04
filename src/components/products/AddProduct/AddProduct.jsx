@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
@@ -8,20 +8,16 @@ import Select from '@mui/material/Select';
 import './AddProduct.css';
 import { useProduct } from '../../../contexts/ProductContextProvider';
 
-const AddProduct = () => {
-  const { categories, getCategories, addProduct } = useProduct();
+const AddProduct = ({ categories }) => {
+  const { addProduct } = useProduct();
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    getCategories();
-  }, []);
 
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -75,7 +71,6 @@ const AddProduct = () => {
         </Select>
       </FormControl>
       <TextField
-        value={image}
         sx={{ width: 345, marginBottom: '30px' }}
         type="file"
         onChange={(e) => setImage(e.target.files[0])}
