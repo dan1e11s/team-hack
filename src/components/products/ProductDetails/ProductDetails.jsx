@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ProductDetails.css';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -11,8 +11,10 @@ import Ratings from '../../Ratings/Ratings';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FormDialog from '../../FormDialog/FormDialog';
+import { useProduct } from '../../../contexts/ProductContextProvider';
 
 const ProductDetails = ({ oneProduct, reviews }) => {
+  const { deleteProduct } = useProduct();
   const [count, setCount] = useState(1);
 
   const [open, setOpen] = useState(false);
@@ -102,7 +104,10 @@ const ProductDetails = ({ oneProduct, reviews }) => {
                   >
                     <EditIcon />
                   </IconButton>
-                  <IconButton color="error">
+                  <IconButton
+                    onClick={() => deleteProduct(oneProduct.slug, navigate)}
+                    color="error"
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </div>
