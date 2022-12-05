@@ -5,6 +5,7 @@ import PaginationList from "../../PaginationList/PaginationList";
 
 const ProductList = () => {
   const { products, getProducts } = useProduct();
+  console.log(products);
 
   useEffect(() => {
     getProducts();
@@ -14,13 +15,6 @@ const ProductList = () => {
     <>
       <div
         className="shopCards"
-        // style={{
-        //   display: "flex",
-        //   justifyContent: "space-between",
-        //   flexWrap: "wrap",
-        //   margin: "0 0 100px",
-        // }}
-      >
         {products ? (
           products.map(item => (
             <ProductCard key={item.updated_at} item={item} />
@@ -29,7 +23,9 @@ const ProductList = () => {
           <h3>Loading</h3>
         )}
       </div>
-      <PaginationList />
+      <div style={{ marginTop: "50px" }}>
+        <PaginationList />
+      </div>
     </>
   );
 };

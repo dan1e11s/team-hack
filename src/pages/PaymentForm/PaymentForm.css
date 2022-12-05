@@ -29,15 +29,26 @@
 #order1 {
   background-color: #ece8de;
   padding: 2% 2%;
+  padding-top: 0px;
+  width: 310px;
 }
 .paymentUls {
   display: flex;
 }
 .paymentUl {
+  list-style: none;
   font-size: 20px;
   padding-left: 0px;
   font-weight: 500;
   margin-right: 90px;
+  margin-top: 0;
+}
+.paymentH3 {
+  margin-top: 5px;
+  font-weight: bold;
+}
+.paymentLi {
+  margin-bottom: 20px;
 }
 .payment-wrapper {
   display: flex;

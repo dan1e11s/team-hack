@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AddProduct from '../../components/products/AddProduct/AddProduct';
+import { useProduct } from '../../contexts/ProductContextProvider';
 
 const AddProductPage = () => {
+  const { getCategories, categories } = useProduct();
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   return (
     <div
       style={{
@@ -14,7 +20,7 @@ const AddProductPage = () => {
       <h3 style={{ fontSize: '25px', marginBottom: '40px' }}>
         Добавление продукта
       </h3>
-      <AddProduct />
+      <AddProduct categories={categories} />
     </div>
   );
 };

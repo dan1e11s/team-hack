@@ -1,6 +1,8 @@
 import React from "react";
 import "../AboutPage/AboutPage.css";
 import { useNavigate } from "react-router-dom";
+import about1img from "../../media/about1img.jpeg";
+import about2img from "../../media/about2img.jpeg";
 
 const AboutPage = () => {
   const navigate = useNavigate();
@@ -11,14 +13,14 @@ const AboutPage = () => {
         <div className="breadcrumbs">
           <a
             className="aboutPage_main_a"
-            id="breadcrumb1"
+            class="breadcrumb1"
             onClick={() => navigate("/")}>
-            Главное
+            Главная
           </a>
-          <a className="aboutPage_main_a" id="breadcrumb2">
+          <a className="aboutPage_main_a" class="breadcrumb2">
             -
           </a>
-          <a className="aboutPage_main_a" id="breadcrumb3">
+          <a className="aboutPage_main_a" class="breadcrumb3">
             О бренде
           </a>
         </div>
@@ -28,7 +30,7 @@ const AboutPage = () => {
           <div className="blockImg">
             <img
               className="img1_aboutPage"
-              src="https://timdelux.github.io/img/about1.jpg"
+              src={about1img}
               alt="There's an img"
             />
           </div>
@@ -72,11 +74,7 @@ const AboutPage = () => {
               width: "100%",
               justifyContent: "center",
             }}>
-            <img
-              className="img2_aboutPage"
-              src="https://timdelux.github.io/img/about2.jpg"
-              alt="asdsad"
-            />
+            <img className="img2_aboutPage" src={about2img} alt="asdsad" />
           </div>
         </div>
         <div className="divBtn" style={{ width: "100%", textAlign: "center" }}>

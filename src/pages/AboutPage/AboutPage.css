@@ -18,15 +18,15 @@
   font-size: 18px;
   margin-left: 10px;
 }
-#breadcrumb1:hover {
+.breadcrumb1:hover {
   cursor: pointer;
   border-bottom: 1px solid #6e9c9f;
 }
-#breadcrumb2 {
+.breadcrumb2 {
   color: #909090;
   margin-left: 10px;
 }
-#breadcrumb3 {
+.breadcrumb3 {
   color: #909090;
   margin-left: 10px;
 }

@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "../MainPage/MainPage.css";
 import firstpng from "../../media/quality1.png";
 import secondpng from "../../media/mdi-light_cog.png";
 import thirdpng from "../../media/hand1.png";
 import ecoIMG from "../../media/ecomainIMG.webp";
 import { useNavigate } from "react-router-dom";
+import TopTenProducts from "../../components/TopTenProducts/TopTenProducts";
+import TopTenProductsAdpative1 from "../../components/TopTenProducts/TopTenProductsAdpative1";
+import TopTenProductsAdpative2 from "../../components/TopTenProducts/TopTenProductsAdaptive2";
 
-const MainPage = () => {
+const MainPage = item => {
   const navigate = useNavigate();
+
   return (
     <div className="mainpage">
       <div className="mainTop">
@@ -28,6 +32,15 @@ const MainPage = () => {
           src="http://womazing.s-host.net/wp-content/uploads/2021/04/main-photo.jpg"
           alt="mainphoto"
         />
+      </div>
+      <div className="topTen">
+        <TopTenProducts key={item.updated_at} item={item} />
+      </div>
+      <div className="topTenAdaptive">
+        <TopTenProductsAdpative1 key={item.updated_at} item={item} />
+      </div>
+      <div className="topTenAdaptive2">
+        <TopTenProductsAdpative2 key={item.updated_at} item={item} />
       </div>
       <div className="mainContent">
         <h2 className="mainContentText">Что для нас важно</h2>

@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import './Navbar.css';
-import SideBar from '../SideBar/SideBar';
-import Modal from '../Modal/Modal';
-import { useAuth } from '../../contexts/AuthContextProvider';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import IconButton from '@mui/material/IconButton';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import BeachAccessIcon from "@mui/icons-material/BeachAccess";
+import "./Navbar.css";
+import SideBar from "../SideBar/SideBar";
+import Modal from "../Modal/Modal";
+import { useAuth } from "../../contexts/AuthContextProvider";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import IconButton from "@mui/material/IconButton";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import Badge from "@mui/material/Badge";
+import { useCart } from "../../contexts/CardContextProvider";
 
 const Navbar = () => {
+  const { cartLength } = useCart();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleMenu = (event) => {
+  const handleMenu = event => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -29,7 +32,7 @@ const Navbar = () => {
   const { currentUser, checkAuth, handleLogout, deleteAccount } = useAuth();
 
   useEffect(() => {
-    if (localStorage.getItem('tokens')) {
+    if (localStorage.getItem("tokens")) {
       checkAuth();
     }
   }, []);
@@ -45,8 +48,7 @@ const Navbar = () => {
       <button
         onClick={() => setCollapseOpen(!collapseOpen)}
         className="menu-btn"
-        variant="contained"
-      >
+        variant="contained">
         Меню
       </button>
       <SideBar
@@ -54,43 +56,37 @@ const Navbar = () => {
         setCollapseOpen={setCollapseOpen}
         handleOpen={handleOpen}
       />
-      <div className="nav-logo">
-        <BeachAccessIcon />
-        <h2 className="nav-title" onClick={() => navigate('/')}>
-          Umbrella
-        </h2>
+      <div className="nav-logo" onClick={() => navigate("/")}>
+        <BeachAccessIcon sx={{ cursor: "pointer" }} />
+        <h2 className="nav-title">Umbrella</h2>
       </div>
       <ul className="nav-list">
         <li
           className={`nav-list-item ${
-            location.pathname === '/' ? 'active' : ''
+            location.pathname === "/" ? "active" : ""
           }`}
-          onClick={() => navigate('/')}
-        >
+          onClick={() => navigate("/")}>
           Главная
         </li>
         <li
           className={`nav-list-item ${
-            location.pathname === '/shop' ? 'active' : ''
+            location.pathname === "/shop" ? "active" : ""
           }`}
-          onClick={() => navigate('/shop')}
-        >
+          onClick={() => navigate("/shop")}>
           Магазин
         </li>
         <li
           className={`nav-list-item ${
-            location.pathname === '/about' ? 'active' : ''
+            location.pathname === "/about" ? "active" : ""
           }`}
-          onClick={() => navigate('/about')}
-        >
+          onClick={() => navigate("/about")}>
           О бренде
         </li>
         <li
           className={`nav-list-item ${
-            location.pathname === '/contacts' ? 'active' : ''
+            location.pathname === "/contacts" ? "active" : ""
           }`}
-          onClick={() => navigate('/contacts')}
-        >
+          onClick={() => navigate("/contacts")}>
           Контакты
         </li>
       </ul>
@@ -103,40 +99,38 @@ const Navbar = () => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleMenu}
-              color="inherit"
-            >
+              color="inherit">
               <AccountCircle />
             </IconButton>
             <Menu
-              id="menu-appbar"
+              id="menu-"
               anchorEl={anchorEl}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorEl)}
-              onClose={handleCloseAva}
-            >
+              onClose={handleCloseAva}>
               <MenuItem
                 onClick={() => {
                   handleClose();
+                  handleCloseAva();
                   handleLogout();
-                }}
-              >
-                Logout
+                }}>
+                Выйти
               </MenuItem>
               <MenuItem
                 onClick={() => {
                   handleClose();
+                  handleCloseAva();
                   deleteAccount();
-                }}
-              >
-                Delete Account
+                }}>
+                Удалить аккаунт
               </MenuItem>
             </Menu>
           </div>
@@ -146,13 +140,25 @@ const Navbar = () => {
           onClick={() => {
             if (!currentUser) {
               handleOpen();
+              handleCloseAva();
             }
           }}
-          style={{ display: currentUser ? 'none' : 'block' }}
-        >
+          style={{ display: currentUser ? "none" : "block" }}>
           <h3>Вход</h3>
         </button>
-        {currentUser ? <ShoppingBagIcon /> : null}
+        {currentUser ? (
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={() => navigate("/cart")}
+            color="inherit">
+            <Badge badgeContent={cartLength} color="error" size="large">
+              <ShoppingCartIcon />
+            </Badge>
+          </IconButton>
+        ) : null}
       </div>
       <Modal open={open} handleClose={handleClose} />
     </nav>

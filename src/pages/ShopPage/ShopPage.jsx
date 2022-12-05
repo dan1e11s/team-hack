@@ -6,8 +6,10 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import Category from "../../components/Category/Category";
 import SearchBlock from "../../components/Search/SearchBlock";
 
+
 const ShopPage = () => {
   const navigate = useNavigate();
+  const user = localStorage.getItem("username");
 
   return (
     <div className="shop-box">
@@ -15,17 +17,24 @@ const ShopPage = () => {
         <h1 className="shop-title">Магазин</h1>
         <div className="shop-breadcrumbs">
           <div className="breadcrumbs-item">
-            <div className="bread-link">
-              <Link to="/" className="shop-link">
+            <div className="breadcrumbs" id="bread">
+              <a onClick={() => navigate("/")} className="breadcrumb1">
                 Главная
-              </Link>
-              <span style={{ color: "#9c9c9c" }}>
+              </a>
+              <a className="breadcrumb2">
                 &nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;&nbsp;Магазин
-              </span>
+              </a>
             </div>
-            <div className="shop-add-product">
-              <p onClick={() => navigate("/add")}>Добавить продукт</p>
-              <AddBoxIcon sx={{ marginLeft: "5px", cursor: "pointer" }} />
+            <div className="shop-add-product"
+              <p
+                onClick={() => navigate("/add")}
+                className={` ${user === "admin" ? "see" : "nosee"}`}>
+                Добавить продукт
+              </p>
+              <AddBoxIcon
+                sx={{ marginLeft: "5px", cursor: "pointer" }}
+                className={` ${user === "admin" ? "see" : "nosee"}`}
+              />
             </div>
           </div>
         </div>
