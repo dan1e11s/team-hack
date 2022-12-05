@@ -5,7 +5,7 @@ import "./ShopPage.css";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import Category from "../../components/Category/Category";
 import SearchBlock from "../../components/Search/SearchBlock";
-import { display } from "@mui/system";
+
 
 const ShopPage = () => {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const ShopPage = () => {
                 &nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;&nbsp;Магазин
               </a>
             </div>
-            <div className="shop-add-product">
+            <div className="shop-add-product"
               <p
                 onClick={() => navigate("/add")}
                 className={` ${user === "admin" ? "see" : "nosee"}`}>

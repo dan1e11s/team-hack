@@ -14,11 +14,7 @@ const ProductList = () => {
   return (
     <>
       <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-        }}>
+        className="shopCards"
         {products ? (
           products.map(item => (
             <ProductCard key={item.updated_at} item={item} />
