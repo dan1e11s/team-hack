@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 import { useProduct } from "../../contexts/ProductContextProvider";
-import { useNavigate } from "react-router-dom";
 import ProductCard from "../products/ProductCard/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -15,7 +14,7 @@ import {
   EffectCoverflow,
 } from "swiper";
 
-export default function TopTenProducts({ item }) {
+export default function TopTenProductsAdpative2({ item }) {
   const { topTen, getTopTenProducts } = useProduct();
 
   useEffect(() => {
@@ -28,15 +27,15 @@ export default function TopTenProducts({ item }) {
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "4% 8%",
+        padding: "4% 0%",
       }}>
-      <h2 className="mainContentText" id="topTenH2">
+      <h2
+        className="mainContentText"
+        id="topTenH2"
+        style={{ marginLeft: "8%" }}>
         Новая коллекция
       </h2>
       <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
-        slidesPerGroup={3}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,

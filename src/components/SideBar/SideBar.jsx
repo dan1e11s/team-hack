@@ -6,12 +6,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContextProvider";
 import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import { useCart } from "../../contexts/CardContextProvider";
+import Badge from "@mui/material/Badge";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const SideBar = ({ collapseOpen, setCollapseOpen, handleOpen }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { currentUser, handleLogout, deleteAccount } = useAuth();
   const username = localStorage.getItem("username");
+  const { cartLength } = useCart();
 
   return (
     <Collapse className="collapse-box" in={collapseOpen}>
@@ -32,14 +36,15 @@ const SideBar = ({ collapseOpen, setCollapseOpen, handleOpen }) => {
                 </li>
               </div>
             </IconButton>
-            <li className="collapse-list-item" onClick={() => handleLogout()}>
-              Выйти
-            </li>
             <li
-              className="collapse-list-item"
-              id="deleteside"
-              onClick={() => deleteAccount()}>
-              Удалить аккаунт
+              className={`collapse-list-item ${
+                location.pathname === "/cart" ? "active" : ""
+              }`}
+              style={{ marginBottom: "0px" }}
+              onClick={() => navigate("/cart")}>
+              <Badge badgeContent={cartLength} color="error" size="large">
+                <ShoppingCartIcon sx={{ fontSize: "20px" }} />
+              </Badge>
             </li>
           </div>
         ) : null}
@@ -86,6 +91,19 @@ const SideBar = ({ collapseOpen, setCollapseOpen, handleOpen }) => {
           onClick={() => navigate("/contacts")}>
           Контакты
         </li>
+        {currentUser ? (
+          <div>
+            <li className="collapse-list-item" onClick={() => handleLogout()}>
+              Выйти
+            </li>
+            <li
+              className="collapse-list-item"
+              id="deleteside"
+              onClick={() => deleteAccount()}>
+              Удалить аккаунт
+            </li>
+          </div>
+        ) : null}
       </ul>
     </Collapse>
   );

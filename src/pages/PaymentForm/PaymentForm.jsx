@@ -95,9 +95,7 @@ const PaymentForm = () => {
                 ))}
               </ul>
             </div>
-            {cart?.products.map(elem => (
-              <h2 className="paymentH2">Общая цена: {cart.totalPrice}</h2>
-            ))}
+            <h2 className="paymentH2">Общая цена: {cart.totalPrice}</h2>
           </div>
         </div>
         <div className="paymentBot">
