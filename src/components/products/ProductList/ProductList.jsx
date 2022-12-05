@@ -13,8 +13,7 @@ const ProductList = () => {
 
   return (
     <>
-      <div
-        className="shopCards"
+      <div className="shopCards">
         {products ? (
           products.map(item => (
             <ProductCard key={item.updated_at} item={item} />
