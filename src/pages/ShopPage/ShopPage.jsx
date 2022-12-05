@@ -5,7 +5,7 @@ import "./ShopPage.css";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import Category from "../../components/Category/Category";
 import SearchBlock from "../../components/Search/SearchBlock";
-
+import Category from "../../components/Category/Category.css";
 
 const ShopPage = () => {
   const navigate = useNavigate();
