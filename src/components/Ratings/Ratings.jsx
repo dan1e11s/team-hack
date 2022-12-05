@@ -17,7 +17,7 @@ const labels = {
 };
 
 export default function Ratings() {
-  const value = 3.5;
+  const value = 2;
 
   return (
     <Box
