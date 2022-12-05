@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import ProductList from '../../components/products/ProductList/ProductList';
-import './ShopPage.css';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import Category from '../../components/Category/Category';
-import SearchBlock from '../../components/Search/SearchBlock';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import ProductList from "../../components/products/ProductList/ProductList";
+import "./ShopPage.css";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import Category from "../../components/Category/Category";
+import SearchBlock from "../../components/Search/SearchBlock";
 
 const ShopPage = () => {
   const navigate = useNavigate();
@@ -19,13 +19,13 @@ const ShopPage = () => {
               <Link to="/" className="shop-link">
                 Главная
               </Link>
-              <span style={{ color: '#9c9c9c' }}>
+              <span style={{ color: "#9c9c9c" }}>
                 &nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;&nbsp;Магазин
               </span>
             </div>
             <div className="shop-add-product">
-              <p onClick={() => navigate('/add')}>Добавить продукт</p>
-              <AddBoxIcon sx={{ marginLeft: '5px', cursor: 'pointer' }} />
+              <p onClick={() => navigate("/add")}>Добавить продукт</p>
+              <AddBoxIcon sx={{ marginLeft: "5px", cursor: "pointer" }} />
             </div>
           </div>
         </div>
