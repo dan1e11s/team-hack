@@ -1,0 +1,31 @@
+.H {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  background-color: #ece8de;
+  font-weight: 500;
+}
+.cartt {
+  min-height: 53.7vh;
+}
+#accept {
+  width: 140px;
+  height: 60px;
+  margin-top: 0px;
+  margin: 0 1%;
+  font-size: 15px;
+}
+#back {
+  width: 140px;
+  height: 60px;
+  margin: 0 1%;
+  margin-left: 0px;
+  font-size: 15 px;
+}
+.cartBot {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

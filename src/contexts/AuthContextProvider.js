@@ -1,17 +1,17 @@
-import axios from 'axios';
-import React, { createContext, useContext, useState } from 'react';
+import axios from "axios";
+import React, { createContext, useContext, useState } from "react";
 
 export const authContext = createContext();
 export const useAuth = () => useContext(authContext);
 
-export const API = 'http://34.91.217.40/';
+export const API = "http://34.91.217.40/";
 
 const AuthContextProvider = ({ children }) => {
-  const [success, setSuccess] = useState('');
-  const [error, setError] = useState('');
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
   const [currentUser, setCurrentUser] = useState(false);
 
-  const register = async (formData) => {
+  const register = async formData => {
     try {
       const { data } = await axios.post(`${API}account/register/`, formData);
       setSuccess(data);
@@ -27,8 +27,8 @@ const AuthContextProvider = ({ children }) => {
     try {
       const res = await axios.post(`${API}account/login/`, formData);
       console.log(res);
-      localStorage.setItem('tokens', JSON.stringify(res.data));
-      localStorage.setItem('username', username);
+      localStorage.setItem("tokens", JSON.stringify(res.data));
+      localStorage.setItem("username", username);
       setCurrentUser(username);
     } catch (err) {
       console.log(err);
@@ -36,9 +36,8 @@ const AuthContextProvider = ({ children }) => {
   };
 
   async function checkAuth() {
-    console.log('Check Auth Worked!');
     try {
-      const tokens = JSON.parse(localStorage.getItem('tokens'));
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
       const Authorization = `Bearer ${tokens.access}`;
       const config = {
         headers: {
@@ -51,13 +50,13 @@ const AuthContextProvider = ({ children }) => {
         config
       );
       localStorage.setItem(
-        'tokens',
+        "tokens",
         JSON.stringify({
           access: res.data.access,
           refresh: tokens.refresh,
         })
       );
-      const username = localStorage.getItem('username');
+      const username = localStorage.getItem("username");
       setCurrentUser(username);
       console.log(res);
     } catch (err) {
@@ -66,14 +65,14 @@ const AuthContextProvider = ({ children }) => {
   }
 
   function handleLogout() {
-    localStorage.removeItem('tokens');
-    localStorage.removeItem('username');
+    localStorage.removeItem("tokens");
+    localStorage.removeItem("username");
     setCurrentUser(false);
   }
 
   async function deleteAccount() {
     try {
-      const tokens = JSON.parse(localStorage.getItem('tokens'));
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
       const Authorization = `Bearer ${tokens.access}`;
       const config = {
         headers: {

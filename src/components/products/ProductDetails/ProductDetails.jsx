@@ -14,6 +14,7 @@ import FormDialog from "../../FormDialog/FormDialog";
 import { useProduct } from "../../../contexts/ProductContextProvider";
 import ColorList from "../../ColorList/ColorList";
 import { useCart } from "../../../contexts/CardContextProvider";
+import Swal from "sweetalert2";
 
 const ProductDetails = ({ oneProduct }) => {
   const { addProductToCart } = useCart();
@@ -21,7 +22,17 @@ const ProductDetails = ({ oneProduct }) => {
   const [count, setCount] = useState(1);
   const user = localStorage.getItem("username");
 
-  console.log(oneProduct);
+  function checkUser(oneProduct) {
+    if (user) {
+      addProductToCart(oneProduct);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Вы должны авторизоваться",
+      });
+    }
+  }
 
   const [open, setOpen] = useState(false);
 
@@ -44,9 +55,12 @@ const ProductDetails = ({ oneProduct }) => {
               <h3 className="details-title">{oneProduct.title}</h3>
             </div>
             <div className="details-bread">
-              <Link to="/" className="shop-link">
+              <a
+                onClick={() => navigate("/")}
+                className="breadcrumb1"
+                style={{ fontSize: "18px" }}>
                 Главная
-              </Link>
+              </a>
               <span style={{ color: "#9c9c9c" }}>
                 &nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;&nbsp;
                 {oneProduct.title}
@@ -99,7 +113,7 @@ const ProductDetails = ({ oneProduct }) => {
                   <div>
                     <button
                       className="add-cart"
-                      onClick={() => addProductToCart(oneProduct)}>
+                      onClick={() => checkUser(oneProduct)}>
                       Добавить в корзину
                     </button>
                   </div>
@@ -184,5 +198,4 @@ const ProductDetails = ({ oneProduct }) => {
     </>
   );
 };
-
 export default ProductDetails;

@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 import { useProduct } from "../../contexts/ProductContextProvider";
-import { useNavigate } from "react-router-dom";
 import ProductCard from "../products/ProductCard/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -15,7 +14,7 @@ import {
   EffectCoverflow,
 } from "swiper";
 
-export default function TopTenProducts({ item }) {
+export default function TopTenProductsAdpative1({ item }) {
   const { topTen, getTopTenProducts } = useProduct();
 
   useEffect(() => {
@@ -34,9 +33,9 @@ export default function TopTenProducts({ item }) {
         Новая коллекция
       </h2>
       <Swiper
-        slidesPerView={3}
+        slidesPerView={2}
         spaceBetween={30}
-        slidesPerGroup={3}
+        slidesPerGroup={2}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,

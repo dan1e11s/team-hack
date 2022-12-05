@@ -9,6 +9,8 @@ import Paper from "@mui/material/Paper";
 import { Button, TextField, Typography } from "@mui/material";
 import { useCart } from "../../contexts/CardContextProvider.js";
 import { useNavigate } from "react-router-dom";
+import "../Cart/Cart.css";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 export default function Cart() {
   const { getCart, cart, changeProductCount, deleteProductInCart } = useCart();
@@ -19,35 +21,27 @@ export default function Cart() {
     getCart();
   }, []);
 
-  function cartCleaner() {
-    localStorage.removeItem("cart");
-    getCart();
-  }
-
   return (
     <div>
       <TableContainer component={Paper} className="cartt">
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell className="texts">Picture</TableCell>
+              <TableCell className="texts">Товар</TableCell>
               <TableCell className="texts" align="right">
-                Name
+                Название
               </TableCell>
               <TableCell className="texts" align="right">
-                Category
+                Цена
               </TableCell>
               <TableCell className="texts" align="right">
-                Price
+                Количество
               </TableCell>
               <TableCell className="texts" align="right">
-                Count
+                Общая цена
               </TableCell>
               <TableCell className="texts" align="right">
-                Sub Price
-              </TableCell>
-              <TableCell className="texts" align="right">
-                Delete
+                Удаление
               </TableCell>
             </TableRow>
           </TableHead>
@@ -60,17 +54,17 @@ export default function Cart() {
                   <img
                     src={elem.getOneProduct.image}
                     alt="image"
-                    style={{ height: "70px" }}
+                    style={{ height: "70px", cursor: "pointer" }}
+                    onClick={() =>
+                      navigate(`/products/${elem.getOneProduct.slug}`)
+                    }
                   />
                 </TableCell>
                 <TableCell className="texts" align="right">
                   {elem.getOneProduct.title}
                 </TableCell>
                 <TableCell className="texts" align="right">
-                  {elem.getOneProduct.category}
-                </TableCell>
-                <TableCell className="texts" align="right">
-                  {elem.getOneProduct.price}
+                  {elem.getOneProduct.price}$
                 </TableCell>
                 <TableCell className="counttexto" align="right">
                   <TextField
@@ -87,40 +81,42 @@ export default function Cart() {
                   />
                 </TableCell>
                 <TableCell className="texts" align="right">
-                  {elem.subPrice}
+                  {elem.subPrice}$
                 </TableCell>
                 <TableCell align="right">
-                  <button
-                    className="delete"
-                    onClick={() =>
-                      deleteProductInCart(elem.getOneProduct.slug)
-                    }>
-                    Delete
-                  </button>
+                  <CancelIcon
+                    sx={{
+                      cursor: "pointer",
+                      marginRight: "7px",
+                      color: "#ba000d",
+                      fontSize: "26px",
+                    }}
+                    onClick={() => deleteProductInCart(elem.getOneProduct.slug)}
+                  />
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
-        <h2 className="H">
-          Total Price: {cart?.totalPrice}
+        <div className="cartBot">
+          <h2 className="H">Итого: {cart?.totalPrice}$</h2>
           <button
-            className="button"
+            className="btn_aboutPage"
             id="accept"
             onClick={() => {
               navigate("/payment");
             }}>
-            Accept Order
+             Оформить заказ
           </button>
           <button
             id="back"
-            className="button"
+            className="btn_aboutPage"
             onClick={() => {
               navigate("/shop");
             }}>
-            Back
+            На главную
           </button>
-        </h2>
+        </div>
       </TableContainer>
     </div>
   );

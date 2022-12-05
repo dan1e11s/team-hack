@@ -10,6 +10,12 @@
   justify-content: center;
   align-items: flex-start;
 }
+.topTenAdaptive {
+  display: none;
+}
+.topTenAdaptive2 {
+  display: none;
+}
 .mainblock {
   background-color: #ece8de;
   padding: 5% 2%;
@@ -97,6 +103,22 @@
 #topTenH2 {
   margin-left: 0px;
   margin-bottom: 0px;
+}
+@media all and (max-width: 1300px) {
+  .topTen {
+    display: none;
+  }
+  .topTenAdaptive {
+    display: block;
+  }
+}
+@media all and (max-width: 850px) {
+  .topTenAdaptive {
+    display: none;
+  }
+  .topTenAdaptive2 {
+    display: block;
+  }
 }
 @media all and (max-width: 1024px) {
   .mainTop {
