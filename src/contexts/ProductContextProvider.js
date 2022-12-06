@@ -32,14 +32,14 @@ function reducer(state = INIT_STATE, action) {
       return { ...state, reviews: action.payload };
     case 'GET_TOP':
       return { ...state, topTen: action.payload };
-    case "GET_LIKES":
+    case 'GET_LIKES':
       return { ...state, likes: action.payload };
     default:
       return state;
   }
 }
 
-const API = 'http://34.91.217.40/';
+const API = 'https://34.91.217.40/';
 
 const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
@@ -101,7 +101,7 @@ const ProductContextProvider = ({ children }) => {
 
   async function toggleLike(slug) {
     try {
-      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      const tokens = JSON.parse(localStorage.getItem('tokens'));
       const Authorization = `Bearer ${tokens.access}`;
       const config = {
         headers: {
