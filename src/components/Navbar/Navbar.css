@@ -1,10 +1,23 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  justify-content: center;
+  background-color: white;
+  z-index: 10000000;
+}
 .nav {
   max-width: 1150px;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 15px 30px;
+
+  padding: 0 auto;
 }
 
 .nav-logo {
@@ -106,7 +119,8 @@
 
 @media all and (max-width: 991px) {
   .nav {
-    padding: 8px 20px;
+    width: 85%;
+    padding: 6px auto !important;
   }
 
   .nav-list {

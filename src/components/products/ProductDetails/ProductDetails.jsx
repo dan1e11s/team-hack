@@ -20,11 +20,12 @@ const ProductDetails = ({ oneProduct }) => {
   const { deleteProduct, deleteComment } = useProduct();
   const user = localStorage.getItem("username");
   const [addToCart, setAddToCart] = useState(false);
-  const slug = useParams();
+  const { id } = useParams();
+  // console.log(slug);
 
   useEffect(() => {
-    console.log(checkProductInCartAgain(slug));
-    if (checkProductInCartAgain(slug) === true) {
+    console.log(checkProductInCartAgain(id));
+    if (checkProductInCartAgain(id) === true) {
       setAddToCart(true);
     } else {
       setAddToCart(false);

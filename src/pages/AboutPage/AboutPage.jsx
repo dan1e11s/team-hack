@@ -1,8 +1,8 @@
-import React from 'react';
-import '../AboutPage/AboutPage.css';
-import { useNavigate } from 'react-router-dom';
-import about1img from '../../media/about1img.jpeg';
-import about2img from '../../media/about2img.jpeg';
+import React from "react";
+import "../AboutPage/AboutPage.css";
+import { useNavigate } from "react-router-dom";
+import about1img from "../../media/about1img.jpeg";
+import about2img from "../../media/about2img.jpeg";
 
 const AboutPage = () => {
   const navigate = useNavigate();
@@ -11,11 +11,11 @@ const AboutPage = () => {
       <div className="aboutTop">
         <h1 className="aboutPage_h1">О бренде</h1>
         <div className="breadcrumbs">
-          <a className="aboutPage_main_a" onClick={() => navigate('/')}>
+          <a className="breadcrumb1" onClick={() => navigate("/")}>
             Главная
           </a>
-          <a className="aboutPage_main_a">-</a>
-          <a className="aboutPage_main_a">О бренде</a>
+          <a className="breadcrumb2">-</a>
+          <a className="breadcrumb3">О бренде</a>
         </div>
       </div>
       <div className="content_aboutPage">
@@ -62,17 +62,16 @@ const AboutPage = () => {
           </div>
           <div
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              width: '100%',
-              justifyContent: 'center',
-            }}
-          >
+              display: "flex",
+              alignItems: "center",
+              width: "100%",
+              justifyContent: "center",
+            }}>
             <img className="img2_aboutPage" src={about2img} alt="asdsad" />
           </div>
         </div>
-        <div className="divBtn" style={{ width: '100%', textAlign: 'center' }}>
-          <button className="btn_aboutPage" onClick={() => navigate('/shop')}>
+        <div className="divBtn" style={{ width: "100%", textAlign: "center" }}>
+          <button className="btn_aboutPage" onClick={() => navigate("/shop")}>
             Перейти в магазин
           </button>
         </div>
