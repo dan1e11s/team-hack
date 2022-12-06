@@ -8,13 +8,6 @@ import EmailIcon from "@mui/icons-material/Email";
 import { useAuth } from "../../contexts/AuthContextProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  minWidth: 400,
 import "../Modal/Modal.css";
 
 const style = {
