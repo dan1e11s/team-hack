@@ -1,15 +1,15 @@
-import React, { useRef, useState } from "react";
-import "../MainPage/MainPage.css";
-import firstpng from "../../media/quality1.png";
-import secondpng from "../../media/mdi-light_cog.png";
-import thirdpng from "../../media/hand1.png";
-import ecoIMG from "../../media/ecomainIMG.webp";
-import { useNavigate } from "react-router-dom";
-import TopTenProducts from "../../components/TopTenProducts/TopTenProducts";
-import TopTenProductsAdpative1 from "../../components/TopTenProducts/TopTenProductsAdpative1";
-import TopTenProductsAdpative2 from "../../components/TopTenProducts/TopTenProductsAdaptive2";
+import React, { useRef, useState } from 'react';
+import '../MainPage/MainPage.css';
+import firstpng from '../../media/quality1.png';
+import secondpng from '../../media/mdi-light_cog.png';
+import thirdpng from '../../media/hand1.png';
+import ecoIMG from '../../media/ecomainIMG.webp';
+import { useNavigate } from 'react-router-dom';
+import TopTenProducts from '../../components/TopTenProducts/TopTenProducts';
+import TopTenProductsAdpative1 from '../../components/TopTenProducts/TopTenProductsAdpative1';
+import TopTenProductsAdpative2 from '../../components/TopTenProducts/TopTenProductsAdaptive2';
 
-const MainPage = item => {
+const MainPage = (item) => {
   const navigate = useNavigate();
 
   return (
@@ -21,7 +21,7 @@ const MainPage = item => {
             Утонченные сочетания и бархатные оттенки - вот то, что вы искали в
             этом сезоне. Время исследовать.
           </p>
-          <button onClick={() => navigate("/shop")} className="mainbtn">
+          <button onClick={() => navigate('/shop')} className="mainbtn">
             Открыть Магазин
           </button>
         </div>

@@ -38,6 +38,9 @@
   margin-top: 130px;
   display: block;
 }
+.map_style_ContactsPage {
+  height: 600px;
+}
 .rowText {
   display: flex;
   flex-direction: row;
@@ -109,6 +112,9 @@
   .contactsPage_h1 {
     font-size: 40px;
   }
+  .map_style_ContactsPage {
+    height: 500px;
+  }
   .rowText {
     flex-wrap: wrap;
   }
@@ -120,11 +126,19 @@
   }
 }
 @media (max-width: 425px) {
+  .map_style_ContactsPage {
+    width: 100%;
+    height: fit-content;
+  }
   .rowText {
     flex-wrap: wrap;
   }
   .form_ContactsPage {
     width: 100%;
+  }
+  .map_ContactsPage {
+    width: 100%;
+    height: fit-content;
   }
 }
 @media (max-width: 375px) {
@@ -134,7 +148,17 @@
   .morsel {
     font-size: 17px;
   }
+  .map_style_ContactsPage {
+    width: 100%;
+    height: fit-content;
+  }
   .form_ContactsPage {
     width: 100%;
+  }
+}
+@media (max-width: 375px) {
+  .map_style_ContactsPage {
+    width: 100%;
+    height: fit-content;
   }
 }

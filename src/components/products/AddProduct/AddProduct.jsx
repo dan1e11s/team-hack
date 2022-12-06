@@ -15,6 +15,7 @@ const AddProduct = ({ categories }) => {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState('');
+  const [color, setColor] = useState([]);
   const [image, setImage] = useState(null);
 
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const AddProduct = ({ categories }) => {
     newProduct.append('description', description);
     newProduct.append('price', price);
     newProduct.append('category', category);
+    newProduct.append('color', color);
     newProduct.append('image', image);
     addProduct(newProduct, navigate);
   }
@@ -52,6 +54,12 @@ const AddProduct = ({ categories }) => {
         type="text"
         label="Price"
         onChange={(e) => setPrice(e.target.value)}
+      />
+      <TextField
+        sx={{ width: 345, marginBottom: '30px' }}
+        type="text"
+        label="Color"
+        onChange={(e) => setColor(e.target.value)}
       />
       <FormControl>
         <InputLabel id="demo-simple-select-label">Category</InputLabel>
