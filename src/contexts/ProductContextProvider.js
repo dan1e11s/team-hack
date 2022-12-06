@@ -10,6 +10,7 @@ const INIT_STATE = {
   productsCount: 0,
   categories: [],
   oneProduct: null,
+  // filterProduct: [],
   reviews: [],
   topTen: [],
   likes: [],
@@ -23,7 +24,10 @@ function reducer(state = INIT_STATE, action) {
       return { ...state, productsCount: action.payload.count };
     case "GET_ONE_PRODUCT":
       return { ...state, oneProduct: action.payload };
-    case "GET_CATEGORIES":
+    // case 'GET_FILTER_PRODUCT':
+    //   return { ...state, filterProduct: action.payload };
+    case 'GET_CATEGORIES':
+
       return { ...state, categories: action.payload };
     case "GET_REVIEWS":
       return { ...state, reviews: action.payload };
@@ -85,6 +89,7 @@ const ProductContextProvider = ({ children }) => {
   async function getOneProduct(id) {
     try {
       const { data } = await axios(`${API}shop/product_filter/${id}/`);
+      await axios(`${API}shop/products/${id}`);
       console.log(data);
       dispatch({
         type: "GET_ONE_PRODUCT",
@@ -173,6 +178,19 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
+  // async function filterProducts(slug) {
+  //   try {
+  //     const { data } = await axios(`${API}shop/categories/${slug}`);
+  //     console.log(data);
+  //     dispatch({
+  //       type: 'GET_FILTER_PRODUCT',
+  //       payload: data,
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+
   async function createComment(id, content) {
     try {
       const tokens = JSON.parse(localStorage.getItem("tokens"));
@@ -218,6 +236,7 @@ const ProductContextProvider = ({ children }) => {
     oneProduct: state.oneProduct,
     reviews: state.reviews,
     topTen: state.topTen,
+    // filterProduct: state.filterProduct,
     likes: state.likes,
 
     getCategories,
@@ -230,6 +249,7 @@ const ProductContextProvider = ({ children }) => {
     getTopTenProducts,
     createComment,
     deleteComment,
+    // filterProducts,
     toggleLike,
   };
   return (
