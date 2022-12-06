@@ -12,6 +12,7 @@ const INIT_STATE = {
   oneProduct: null,
   reviews: [],
   topTen: [],
+  likes: [],
 };
 
 function reducer(state = INIT_STATE, action) {
@@ -28,6 +29,8 @@ function reducer(state = INIT_STATE, action) {
       return { ...state, reviews: action.payload };
     case 'GET_TOP':
       return { ...state, topTen: action.payload };
+    case "GET_LIKES":
+      return { ...state, likes: action.payload };
     default:
       return state;
   }
@@ -56,7 +59,7 @@ const ProductContextProvider = ({ children }) => {
   async function getTopTenProducts() {
     try {
       const { data } = await axios(
-        `http://34.91.217.40/shop/homepage/first_ten_top/${window.location.search}`
+        `${API}shop/homepage/first_ten_top/${window.location.search}`
       );
       dispatch({
         type: 'GET_TOP',
@@ -87,6 +90,23 @@ const ProductContextProvider = ({ children }) => {
         type: 'GET_ONE_PRODUCT',
         payload: data,
       });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function toggleLike(slug) {
+    try {
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      const Authorization = `Bearer ${tokens.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      console.log(slug);
+      const res = await axios.post(`${API}shop/like/${slug}/`, slug, config);
+      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -198,6 +218,7 @@ const ProductContextProvider = ({ children }) => {
     oneProduct: state.oneProduct,
     reviews: state.reviews,
     topTen: state.topTen,
+    likes: state.likes,
 
     getCategories,
     getProducts,
@@ -209,6 +230,7 @@ const ProductContextProvider = ({ children }) => {
     getTopTenProducts,
     createComment,
     deleteComment,
+    toggleLike,
   };
   return (
     <productContext.Provider value={values}>{children}</productContext.Provider>

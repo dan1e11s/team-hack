@@ -64,12 +64,14 @@ const SearchBlock = () => {
   }, [query]);
 
   return (
-    <Search>
+    <Search
+      sx={{ minWidth: "250px", margin: "30px  auto", marginBottom: "0px" }}>
       <div style={{ position: "relative" }}>
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
+          sx={{ minWidth: "200px" }}
           onChange={e => setQuery(e.target.value)}
           placeholder="Search…"
           inputProps={{ "aria-label": "search" }}
