@@ -17,6 +17,17 @@ const ProductDetails = ({ oneProduct }) => {
   const { addProductToCart } = useCart();
   const { deleteProduct, deleteComment } = useProduct();
   const user = localStorage.getItem("username");
+  const [addToCart, setAddToCart] = useState(false);
+  const slug = useParams();
+
+  useEffect(() => {
+    console.log(checkProductInCartAgain(slug));
+    if (checkProductInCartAgain(slug) === true) {
+      setAddToCart(true);
+    } else {
+      setAddToCart(false);
+    }
+  }, []);
 
   function checkUser(oneProduct) {
     if (user) {
@@ -89,13 +100,22 @@ const ProductDetails = ({ oneProduct }) => {
                 </div>
                 <ColorList oneProduct={oneProduct} />
                 <div className="details-feedback">
-                  <div></div>
                   <div>
-                    <button
-                      className="add-cart"
-                      onClick={() => checkUser(oneProduct)}>
-                      Добавить в корзину
-                    </button>
+                    {addToCart === false ? (
+                      <button
+                        className="add-cart"
+                        onClick={() => checkUser(oneProduct)}>
+                        Добавить в корзину
+                      </button>
+                    ) : null}
+                    {addToCart === true ? (
+                      <button
+                        className="add-cart"
+                        id="deleteBtn"
+                        onClick={() => checkUser(oneProduct)}>
+                        Удалить из корзины
+                      </button>
+                    ) : null}
                   </div>
                   <div className="details-like">
                     <IconButton>
