@@ -38,7 +38,7 @@ export default function TopTenProducts({ item }) {
         spaceBetween={30}
         slidesPerGroup={3}
         autoplay={{
-          delay: 2500,
+          delay: 3500,
           disableOnInteraction: false,
         }}
         pagination={true}

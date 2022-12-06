@@ -15,16 +15,31 @@ import { useProduct } from "../../../contexts/ProductContextProvider";
 import ColorList from "../../ColorList/ColorList";
 import { useCart } from "../../../contexts/CardContextProvider";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const ProductDetails = ({ oneProduct }) => {
-  const { addProductToCart } = useCart();
-  const { deleteProduct, deleteComment } = useProduct();
+  const { addProductToCart, checkProductInCartAgain } = useCart();
+  const { deleteProduct, deleteComment, toggleLike, likes } = useProduct();
   const [count, setCount] = useState(1);
   const user = localStorage.getItem("username");
+  const [addToCart, setAddToCart] = useState(false);
+  const slug = useParams();
+
+  useEffect(() => {
+    console.log(checkProductInCartAgain(slug));
+    if (checkProductInCartAgain(slug) === true) {
+      setAddToCart(true);
+    } else {
+      setAddToCart(false);
+    }
+  }, []);
 
   function checkUser(oneProduct) {
     if (user) {
+      setAddToCart(!addToCart);
       addProductToCart(oneProduct);
+      console.log(checkProductInCartAgain());
     } else {
       Swal.fire({
         icon: "error",
@@ -111,11 +126,21 @@ const ProductDetails = ({ oneProduct }) => {
                     </div>
                   </div>
                   <div>
-                    <button
-                      className="add-cart"
-                      onClick={() => checkUser(oneProduct)}>
-                      Добавить в корзину
-                    </button>
+                    {addToCart === false ? (
+                      <button
+                        className="add-cart"
+                        onClick={() => checkUser(oneProduct)}>
+                        Добавить в корзину
+                      </button>
+                    ) : null}
+                    {addToCart === true ? (
+                      <button
+                        className="add-cart"
+                        id="deleteBtn"
+                        onClick={() => checkUser(oneProduct)}>
+                        Удалить из корзины
+                      </button>
+                    ) : null}
                   </div>
                   <div className="details-like">
                     <IconButton>

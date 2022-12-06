@@ -144,7 +144,24 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
+  const checkProductInCartAgain = slug => {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+
+    if (cart) {
+      let newCart = cart.products.filter(
+        elem => elem.getOneProduct.slug === slug.id
+      );
+      console.log(newCart);
+      if (newCart.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
+
   const values = {
+    checkProductInCartAgain,
     addProductToCart,
     getCart,
     changeProductCount,
