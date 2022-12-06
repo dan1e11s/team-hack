@@ -1,13 +1,13 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import "../PaymentForm/PaymentForm.css";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import Swal from "sweetalert2";
-import { useCart } from "../../contexts/CardContextProvider";
-import { useEffect } from "react";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../PaymentForm/PaymentForm.css';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import Swal from 'sweetalert2';
+import { useCart } from '../../contexts/CardContextProvider';
+import { useEffect } from 'react';
 
 const PaymentForm = () => {
   const { getCart, cart, changeProductCount, deleteProductInCart } = useCart();
@@ -18,19 +18,19 @@ const PaymentForm = () => {
   }, []);
 
   function cartCleaner() {
-    localStorage.removeItem("cart");
+    localStorage.removeItem('cart');
     getCart();
   }
 
   const alerted = () => {
     Swal.fire({
-      icon: "success",
-      title: "Заказ успешно оформлен!",
-      confirmButtonText: "Ok",
-    }).then(result => {
+      icon: 'success',
+      title: 'Заказ успешно оформлен!',
+      confirmButtonText: 'Ok',
+    }).then((result) => {
       if (result.isConfirmed) {
         cartCleaner();
-        navigate("/shop");
+        navigate('/shop');
       }
     });
   };
@@ -40,7 +40,7 @@ const PaymentForm = () => {
       <div className="aboutTop">
         <h1 className="paymentFormH1">Оформление заказа</h1>
         <div className="breadcrumbs">
-          <a className="breadcrumb1" onClick={() => navigate("/")}>
+          <a className="breadcrumb1" onClick={() => navigate('/')}>
             Главное
           </a>
           <a className="breadcrumb2">-</a>
@@ -77,13 +77,15 @@ const PaymentForm = () => {
             <div className="paymentUls">
               <ul className="paymentUl">
                 <h3 className="paymentH3">Товар</h3>
-                {cart?.products.map(elem => (
-                  <li className="paymentLi">{elem.getOneProduct.title}</li>
+                {cart?.products.map((elem) => (
+                  <li key={elem.slug} className="paymentLi">
+                    {elem.getOneProduct.title}
+                  </li>
                 ))}
               </ul>
               <ul className="paymentUl">
                 <h3 className="paymentH3">Цена</h3>
-                {cart?.products.map(elem => (
+                {cart?.products.map((elem) => (
                   <li className="paymentLi">{elem.getOneProduct.price}$</li>
                 ))}
               </ul>
@@ -110,7 +112,8 @@ const PaymentForm = () => {
               <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue="female"
-                name="radio-buttons-group">
+                name="radio-buttons-group"
+              >
                 <FormControlLabel
                   value="Картой"
                   control={<Radio />}
@@ -127,7 +130,8 @@ const PaymentForm = () => {
               onClick={() => {
                 alerted();
               }}
-              className="payment-btn">
+              className="payment-btn"
+            >
               Разместить заказ
             </button>
           </div>

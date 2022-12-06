@@ -20,7 +20,6 @@ export default function TopTenProductsAdpative1({ item }) {
   useEffect(() => {
     getTopTenProducts();
   }, []);
-  console.log(topTen);
 
   return (
     <div
@@ -31,7 +30,7 @@ export default function TopTenProductsAdpative1({ item }) {
       }}
     >
       <h2 className="mainContentText" id="topTenH2">
-        Новая коллекция
+        Популярное
       </h2>
       <Swiper
         slidesPerView={2}
