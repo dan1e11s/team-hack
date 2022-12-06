@@ -1,18 +1,18 @@
-import React from "react";
-import { useEffect } from "react";
-import { useProduct } from "../../contexts/ProductContextProvider";
-import ProductCard from "../products/ProductCard/ProductCard";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "../TopTenProducts/TopTenProducts.css";
+import React from 'react';
+import { useEffect } from 'react';
+import { useProduct } from '../../contexts/ProductContextProvider';
+import ProductCard from '../products/ProductCard/ProductCard';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import '../TopTenProducts/TopTenProducts.css';
 import {
   Navigation,
   Pagination,
   Keyboard,
   Autoplay,
   EffectCoverflow,
-} from "swiper";
+} from 'swiper';
 
 export default function TopTenProductsAdpative2({ item }) {
   const { topTen, getTopTenProducts } = useProduct();
@@ -25,14 +25,16 @@ export default function TopTenProductsAdpative2({ item }) {
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "column",
-        padding: "4% 0%",
-      }}>
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '4% 0%',
+      }}
+    >
       <h2
         className="mainContentText"
         id="topTenH2"
-        style={{ marginLeft: "8%" }}>
+        style={{ marginLeft: '8%' }}
+      >
         Новая коллекция
       </h2>
       <Swiper
@@ -44,11 +46,12 @@ export default function TopTenProductsAdpative2({ item }) {
         navigation={true}
         keyboard={true}
         modules={[Navigation, Pagination, Keyboard, Autoplay, EffectCoverflow]}
-        className="mySwiper">
+        className="mySwiper"
+      >
         {topTen ? (
-          topTen.map(item => (
-            <SwiperSlide>
-              <ProductCard key={item.updated_at} item={item} />
+          topTen.map((item) => (
+            <SwiperSlide key={item.title}>
+              <ProductCard item={item} />
             </SwiperSlide>
           ))
         ) : (
