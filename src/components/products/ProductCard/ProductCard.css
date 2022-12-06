@@ -10,6 +10,7 @@
 .shop-img-wrapper {
   position: relative;
   height: 500px;
+  min-width: 280px;
 }
 .shop-wrapper {
   margin-top: 75px !important;

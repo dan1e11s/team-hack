@@ -1,31 +1,46 @@
-import React, { useState } from 'react';
-import './ProductDetails.css';
-import { useNavigate } from 'react-router-dom';
-import { IconButton } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import Ratings from '../../Ratings/Ratings';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FormDialog from '../../FormDialog/FormDialog';
-import { useProduct } from '../../../contexts/ProductContextProvider';
-import ColorList from '../../ColorList/ColorList';
-import { useCart } from '../../../contexts/CardContextProvider';
-import Swal from 'sweetalert2';
+import React, { useState } from "react";
+import "./ProductDetails.css";
+import { useNavigate } from "react-router-dom";
+import { IconButton } from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import Ratings from "../../Ratings/Ratings";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import FormDialog from "../../FormDialog/FormDialog";
+import { useProduct } from "../../../contexts/ProductContextProvider";
+import ColorList from "../../ColorList/ColorList";
+import { useCart } from "../../../contexts/CardContextProvider";
+import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const ProductDetails = ({ oneProduct }) => {
-  const { addProductToCart } = useCart();
+  const { addProductToCart, checkProductInCartAgain } = useCart();
   const { deleteProduct, deleteComment } = useProduct();
-  const user = localStorage.getItem('username');
+  const user = localStorage.getItem("username");
+  const [addToCart, setAddToCart] = useState(false);
+  const slug = useParams();
+
+  useEffect(() => {
+    console.log(checkProductInCartAgain(slug));
+    if (checkProductInCartAgain(slug) === true) {
+      setAddToCart(true);
+    } else {
+      setAddToCart(false);
+    }
+  }, []);
 
   function checkUser(oneProduct) {
     if (user) {
+      setAddToCart(!addToCart);
       addProductToCart(oneProduct);
+      console.log(checkProductInCartAgain());
     } else {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Вы должны авторизоваться',
+        icon: "error",
+        title: "Oops...",
+        text: "Вы должны авторизоваться",
       });
     }
   }
@@ -52,13 +67,12 @@ const ProductDetails = ({ oneProduct }) => {
             </div>
             <div className="details-bread">
               <a
-                onClick={() => navigate('/')}
+                onClick={() => navigate("/")}
                 className="breadcrumb1"
-                style={{ fontSize: '18px' }}
-              >
+                style={{ fontSize: "18px" }}>
                 Главная
               </a>
-              <span style={{ color: '#9c9c9c' }}>
+              <span style={{ color: "#9c9c9c" }}>
                 &nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;&nbsp;
                 {oneProduct.title}
               </span>
@@ -79,7 +93,7 @@ const ProductDetails = ({ oneProduct }) => {
                   <p className="details-price">
                     Цена: ${oneProduct.price}
                     <LocalOfferIcon
-                      sx={{ marginLeft: '5px', color: '#FF6D75' }}
+                      sx={{ marginLeft: "5px", color: "#FF6D75" }}
                     />
                   </p>
                   <p className="details-consists">
@@ -88,32 +102,38 @@ const ProductDetails = ({ oneProduct }) => {
                 </div>
                 <ColorList oneProduct={oneProduct} />
                 <div className="details-feedback">
-                  <div></div>
                   <div>
-                    <button
-                      className="add-cart"
-                      onClick={() => checkUser(oneProduct)}
-                    >
-                      Добавить в корзину
-                    </button>
+                    {addToCart === false ? (
+                      <button
+                        className="add-cart"
+                        onClick={() => checkUser(oneProduct)}>
+                        Добавить в корзину
+                      </button>
+                    ) : null}
+                    {addToCart === true ? (
+                      <button
+                        className="add-cart"
+                        id="deleteBtn"
+                        onClick={() => checkUser(oneProduct)}>
+                        Удалить из корзины
+                      </button>
+                    ) : null}
                   </div>
                   <div className="details-like">
                     <IconButton>
-                      <FavoriteBorderIcon sx={{ color: '#6e9c9f' }} />
+                      <FavoriteBorderIcon sx={{ color: "#6e9c9f" }} />
                     </IconButton>
                   </div>
                 </div>
-                <div className={` ${user === 'admin' ? 'adm-btns' : 'nosee'}`}>
+                <div className={` ${user === "admin" ? "adm-btns" : "nosee"}`}>
                   <IconButton
                     color="success"
-                    onClick={() => navigate(`/edit/${oneProduct.slug}`)}
-                  >
+                    onClick={() => navigate(`/edit/${oneProduct.slug}`)}>
                     <EditIcon />
                   </IconButton>
                   <IconButton
                     onClick={() => deleteProduct(oneProduct.slug, navigate)}
-                    color="error"
-                  >
+                    color="error">
                     <DeleteIcon />
                   </IconButton>
                 </div>
@@ -127,7 +147,7 @@ const ProductDetails = ({ oneProduct }) => {
               </p>
             </div>
             <Ratings />
-            <div style={{ marginBottom: '20px' }}>
+            <div style={{ marginBottom: "20px" }}>
               <button onClick={handleClickOpen} className="create-reviews">
                 Написать отзыв
               </button>
@@ -141,31 +161,29 @@ const ProductDetails = ({ oneProduct }) => {
             <div>
               {oneProduct.comments_count !== 0 ? (
                 <div>
-                  {oneProduct.comments?.map((item) => (
+                  {oneProduct.comments?.map(item => (
                     <div
                       key={item.id}
                       style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        backgroundColor: '#f5f5f5',
-                        padding: '20px 40px',
-                        marginBottom: '70px',
-                      }}
-                    >
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        backgroundColor: "#f5f5f5",
+                        padding: "20px 40px",
+                        marginBottom: "70px",
+                      }}>
                       <div>
-                        <p style={{ fontSize: '18px', fontWeight: 'bold' }}>
+                        <p style={{ fontSize: "18px", fontWeight: "bold" }}>
                           {item.user}
                         </p>
-                        <span style={{ color: '#9c9c9c' }}>
+                        <span style={{ color: "#9c9c9c" }}>
                           {item.created_at.substr(0, 10)}
                         </span>
-                        <p style={{ fontSize: '20px' }}>{item.text}</p>
+                        <p style={{ fontSize: "20px" }}>{item.text}</p>
                       </div>
                       <IconButton
-                        sx={{ display: user === item.user ? 'block' : 'none' }}
-                        onClick={() => deleteComment(oneProduct.slug, item.id)}
-                      >
+                        sx={{ display: user === item.user ? "block" : "none" }}
+                        onClick={() => deleteComment(oneProduct.slug, item.id)}>
                         <DeleteIcon />
                       </IconButton>
                     </div>

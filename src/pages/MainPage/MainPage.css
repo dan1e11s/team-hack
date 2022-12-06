@@ -16,6 +16,9 @@
 .topTenAdaptive2 {
   display: none;
 }
+.topTen {
+  display: block;
+}
 .mainblock {
   background-color: #ece8de;
   padding: 5% 2%;

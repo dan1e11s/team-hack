@@ -77,11 +77,17 @@
 
 .details-like {
   width: 60px;
-  height: 60px;
+  height: 58px;
   border: 1px solid #6e9c9f;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#deleteBtn {
+  background-color: #dc143c;
+}
+#deleteBtn:hover {
+  background-color: #a52a2a;
 }
 
 .add-cart {
@@ -194,6 +200,9 @@
   }
   .details-feedback {
     margin-bottom: -60%;
+  }
+  .details-text-wrapper {
+    padding-left: 20px;
   }
 }
 @media (max-width: 375px) {
