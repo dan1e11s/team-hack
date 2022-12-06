@@ -20,7 +20,6 @@ export default function TopTenProductsAdpative2({ item }) {
   useEffect(() => {
     getTopTenProducts();
   }, []);
-  console.log(topTen);
 
   return (
     <div
@@ -35,7 +34,7 @@ export default function TopTenProductsAdpative2({ item }) {
         id="topTenH2"
         style={{ marginLeft: '8%' }}
       >
-        Новая коллекция
+        Популярное
       </h2>
       <Swiper
         autoplay={{

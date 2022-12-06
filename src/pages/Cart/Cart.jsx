@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { Button, TextField, Typography } from "@mui/material";
-import { useCart } from "../../contexts/CardContextProvider.js";
-import { useNavigate } from "react-router-dom";
-import "../Cart/Cart.css";
-import CancelIcon from "@mui/icons-material/Cancel";
+import React, { useEffect } from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { Button, TextField, Typography } from '@mui/material';
+import { useCart } from '../../contexts/CardContextProvider.js';
+import { useNavigate } from 'react-router-dom';
+import '../Cart/Cart.css';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 export default function Cart() {
   const { getCart, cart, changeProductCount, deleteProductInCart } = useCart();
@@ -47,15 +47,16 @@ export default function Cart() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {cart?.products.map(elem => (
+              {cart?.products.map((elem) => (
                 <TableRow
                   key={elem.getOneProduct.slug}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                  <TableCell component="th" scope="row">
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell scope="row">
                     <img
                       src={elem.getOneProduct.image}
                       alt="image"
-                      style={{ height: "70px", cursor: "po" }}
+                      style={{ height: '70px', cursor: 'pointer' }}
                       onClick={() =>
                         navigate(`/products/${elem.getOneProduct.slug}`)
                       }
@@ -70,8 +71,8 @@ export default function Cart() {
                   <TableCell className="counttexto" align="right">
                     <TextField
                       className="counttexts"
-                      sx={{ color: "primary.dark" }}
-                      onChange={e =>
+                      sx={{ color: 'primary.dark' }}
+                      onChange={(e) =>
                         changeProductCount(
                           e.target.value,
                           elem.getOneProduct.slug
@@ -87,10 +88,10 @@ export default function Cart() {
                   <TableCell align="right">
                     <CancelIcon
                       sx={{
-                        cursor: "pointer",
-                        marginRight: "7px",
-                        color: "#ba000d",
-                        fontSize: "26px",
+                        cursor: 'pointer',
+                        marginRight: '7px',
+                        color: '#ba000d',
+                        fontSize: '26px',
                       }}
                       onClick={() =>
                         deleteProductInCart(elem.getOneProduct.slug)
@@ -107,16 +108,18 @@ export default function Cart() {
               className="btn_aboutPage"
               id="accept"
               onClick={() => {
-                navigate("/payment");
-              }}>
+                navigate('/payment');
+              }}
+            >
                Оформить заказ
             </button>
             <button
               id="back"
               className="btn_aboutPage"
               onClick={() => {
-                navigate("/shop");
-              }}>
+                navigate('/shop');
+              }}
+            >
               На главную
             </button>
           </div>
@@ -137,15 +140,16 @@ export default function Cart() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {cart?.products.map(elem => (
+              {cart?.products.map((elem) => (
                 <TableRow
                   key={elem.getOneProduct.slug}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
                   <TableCell component="th" scope="row">
                     <img
                       src={elem.getOneProduct.image}
                       alt="image"
-                      style={{ height: "70px", cursor: "po" }}
+                      style={{ height: '70px', cursor: 'po' }}
                       onClick={() =>
                         navigate(`/products/${elem.getOneProduct.slug}`)
                       }
@@ -153,15 +157,16 @@ export default function Cart() {
                     <TableCell
                       className="texts"
                       align="right"
-                      sx={{ padding: "0", textAlign: "start", border: "none" }}>
+                      sx={{ padding: '0', textAlign: 'start', border: 'none' }}
+                    >
                       {elem.getOneProduct.title}
                     </TableCell>
                   </TableCell>
                   <TableCell className="counttexto" align="right">
                     <TextField
                       className="counttexts"
-                      sx={{ color: "primary.dark" }}
-                      onChange={e =>
+                      sx={{ color: 'primary.dark' }}
+                      onChange={(e) =>
                         changeProductCount(
                           e.target.value,
                           elem.getOneProduct.slug
@@ -175,17 +180,18 @@ export default function Cart() {
                     className="texts"
                     align="right"
                     sx={{
-                      display: "flex",
-                      padding: "55px 10px",
-                      alignItems: "center",
-                    }}>
+                      display: 'flex',
+                      padding: '55px 10px',
+                      alignItems: 'center',
+                    }}
+                  >
                     {elem.subPrice}$
                     <CancelIcon
                       sx={{
-                        cursor: "pointer",
-                        marginRight: "7px",
-                        color: "#ba000d",
-                        fontSize: "26px",
+                        cursor: 'pointer',
+                        marginRight: '7px',
+                        color: '#ba000d',
+                        fontSize: '26px',
                       }}
                       onClick={() =>
                         deleteProductInCart(elem.getOneProduct.slug)
@@ -203,15 +209,17 @@ export default function Cart() {
             <button
               className="accept"
               onClick={() => {
-                navigate("/payment");
-              }}>
+                navigate('/payment');
+              }}
+            >
                Оформить заказ
             </button>
             <button
               className="back"
               onClick={() => {
-                navigate("/shop");
-              }}>
+                navigate('/shop');
+              }}
+            >
               На главную
             </button>
           </div>

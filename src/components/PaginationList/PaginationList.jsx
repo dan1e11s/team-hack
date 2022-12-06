@@ -5,8 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import './PaginationList.css';
 
 export default function PaginationList() {
-  const { getProducts, getCountProducts, productsCount, products } =
-    useProduct();
+  const { getProducts, getCountProducts, productsCount } = useProduct();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);

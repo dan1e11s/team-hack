@@ -17,12 +17,10 @@ import {
 
 export default function TopTenProducts({ item }) {
   const { topTen, getTopTenProducts } = useProduct();
-  console.log(topTen);
 
   useEffect(() => {
     getTopTenProducts();
   }, []);
-  console.log(topTen);
 
   return (
     <div
@@ -33,7 +31,7 @@ export default function TopTenProducts({ item }) {
       }}
     >
       <h2 className="mainContentText" id="topTenH2">
-        Новая коллекция
+        Популярное
       </h2>
       <Swiper
         slidesPerView={3}
