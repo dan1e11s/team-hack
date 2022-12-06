@@ -12,9 +12,11 @@ import { useProduct } from "../../../contexts/ProductContextProvider";
 import ColorList from "../../ColorList/ColorList";
 import { useCart } from "../../../contexts/CardContextProvider";
 import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const ProductDetails = ({ oneProduct }) => {
-  const { addProductToCart } = useCart();
+  const { addProductToCart, checkProductInCartAgain } = useCart();
   const { deleteProduct, deleteComment } = useProduct();
   const user = localStorage.getItem("username");
   const [addToCart, setAddToCart] = useState(false);
