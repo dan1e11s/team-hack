@@ -1,9 +1,10 @@
 .mainpage {
   width: 100%;
+  margin-top: 80px;
 }
 .mainTop {
   height: 100vh;
-  background: url('../../media/backgroundimageformainpage.jpeg');
+  background: url("../../media/backgroundimageformainpage.jpeg");
   background-size: 1900px;
   display: flex;
   flex-direction: column;

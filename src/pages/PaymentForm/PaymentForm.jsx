@@ -40,18 +40,11 @@ const PaymentForm = () => {
       <div className="aboutTop">
         <h1 className="paymentFormH1">Оформление заказа</h1>
         <div className="breadcrumbs">
-          <a
-            className="aboutPage_main_a"
-            id="breadcrumb1"
-            onClick={() => navigate("/")}>
+          <a className="breadcrumb1" onClick={() => navigate("/")}>
             Главное
           </a>
-          <a className="aboutPage_main_a" id="breadcrumb2">
-            -
-          </a>
-          <a className="aboutPage_main_a" id="breadcrumb3">
-            Оформление заказа
-          </a>
+          <a className="breadcrumb2">-</a>
+          <a className="breadcrumb3">Оформление заказа</a>
         </div>
       </div>
       <div className="payment-wrapper">

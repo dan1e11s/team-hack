@@ -31,7 +31,7 @@ const SideBar = ({ collapseOpen, setCollapseOpen, handleOpen }) => {
               color="inherit">
               <div style={{ display: "flex" }}>
                 <AccountCircle />
-                <li className="collapse-list-item" id="userName">
+                <li className="collapse-list-item userName">
                   {username.toUpperCase()}
                 </li>
               </div>

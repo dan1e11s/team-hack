@@ -149,7 +149,7 @@ const CartContextProvider = ({ children }) => {
 
     if (cart) {
       let newCart = cart.products.filter(
-        elem => elem.getOneProduct.slug === slug.id
+        elem => elem.getOneProduct.slug === slug
       );
       console.log(newCart);
       if (newCart.length > 0) {

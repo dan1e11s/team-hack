@@ -9,6 +9,7 @@
 }
 .cartt {
   min-height: 53.7vh;
+  margin-top: 80px;
 }
 .cartBottom {
   display: flex;
