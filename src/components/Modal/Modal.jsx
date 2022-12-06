@@ -15,6 +15,16 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   minWidth: 400,
+import "../Modal/Modal.css";
+
+const style = {
+  className: "style_modal",
+  // position: "absolute",
+  // top: "50%",
+  // left: "50%",
+  // transform: "translate(-50%, -50%)",
+  // with: 400,
+  // minWidth: 400,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -106,6 +116,7 @@ const ModalBox = ({ open, handleClose }) => {
 
   return (
     <Modal
+      className="modal_content"
       sx={{ textAlign: "center" }}
       open={open}
       onClose={handleClose}
