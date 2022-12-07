@@ -20,9 +20,8 @@ const ShopPage = () => {
               <a onClick={() => navigate("/")} className="breadcrumb1">
                 Главная
               </a>
-              <a className="breadcrumb2">
-                &nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;&nbsp;Магазин
-              </a>
+              <a className="breadcrumb2">-</a>
+              <a className="breadcrumb2">Магазин</a>
             </div>
             <div className="shop-add-product">
               <p

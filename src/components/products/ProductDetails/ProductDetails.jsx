@@ -17,10 +17,11 @@ import { useEffect } from "react";
 
 const ProductDetails = ({ oneProduct }) => {
   const { addProductToCart, checkProductInCartAgain } = useCart();
-  const { deleteProduct, deleteComment } = useProduct();
+  const { deleteProduct, deleteComment, toggleLike } = useProduct();
   const user = localStorage.getItem("username");
   const [addToCart, setAddToCart] = useState(false);
   const { id } = useParams();
+  const [like, setLike] = useState(false);
   // console.log(slug);
 
   useEffect(() => {
@@ -37,6 +38,19 @@ const ProductDetails = ({ oneProduct }) => {
       setAddToCart(!addToCart);
       addProductToCart(oneProduct);
       console.log(checkProductInCartAgain());
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Вы должны авторизоваться",
+      });
+    }
+  }
+
+  function checkLikeUser(slug) {
+    if (user) {
+      toggleLike(slug);
+      setLike(!like);
     } else {
       Swal.fire({
         icon: "error",
@@ -121,8 +135,14 @@ const ProductDetails = ({ oneProduct }) => {
                     ) : null}
                   </div>
                   <div className="details-like">
-                    <IconButton>
-                      <FavoriteBorderIcon sx={{ color: "#6e9c9f" }} />
+                    <IconButton
+                      onClick={() => {
+                        checkLikeUser(oneProduct.slug);
+                      }}>
+                      <FavoriteBorderIcon
+                        sx={{ color: "#6e9c9f" }}
+                        className={`${like === true ? "liked" : ""}`}
+                      />
                     </IconButton>
                   </div>
                 </div>
