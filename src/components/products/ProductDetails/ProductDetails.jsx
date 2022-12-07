@@ -18,13 +18,11 @@ import { useEffect } from 'react';
 const ProductDetails = ({ oneProduct }) => {
   const { addProductToCart, checkProductInCartAgain } = useCart();
   const { deleteProduct, deleteComment, toggleLike } = useProduct();
-  const user = localStorage.getItem("username");
+  const user = localStorage.getItem('username');
   const [addToCart, setAddToCart] = useState(false);
 
-  const user = localStorage.getItem('username');
   const { id } = useParams();
   const [like, setLike] = useState(false);
-  // console.log(slug);
 
   useEffect(() => {
     if (checkProductInCartAgain(id) === true) {
@@ -53,9 +51,9 @@ const ProductDetails = ({ oneProduct }) => {
       setLike(!like);
     } else {
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Вы должны авторизоваться",
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Вы должны авторизоваться',
       });
     }
   }
@@ -141,10 +139,11 @@ const ProductDetails = ({ oneProduct }) => {
                     <IconButton
                       onClick={() => {
                         checkLikeUser(oneProduct.slug);
-                      }}>
+                      }}
+                    >
                       <FavoriteBorderIcon
-                        sx={{ color: "#6e9c9f" }}
-                        className={`${like === true ? "liked" : ""}`}
+                        sx={{ color: '#6e9c9f' }}
+                        className={`${like === true ? 'liked' : ''}`}
                       />
                     </IconButton>
                   </div>

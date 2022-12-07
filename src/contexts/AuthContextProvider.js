@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 export const authContext = createContext();
 export const useAuth = () => useContext(authContext);
 
-export const API = 'http://34.91.217.40/';
+export const API = 'http://34.89.197.142/';
 
 const AuthContextProvider = ({ children }) => {
   const [success, setSuccess] = useState('');
@@ -105,10 +105,7 @@ const AuthContextProvider = ({ children }) => {
 
   async function setRestorePassword(formData, navigate) {
     try {
-      const res = await axios.post(
-        `${API}account/set-restored-password/`,
-        formData
-      );
+      await axios.post(`${API}account/set-restored-password/`, formData);
       Swal.fire({
         title: 'Пароль успешно обновлён!',
         confirmButtonText: 'Ok',

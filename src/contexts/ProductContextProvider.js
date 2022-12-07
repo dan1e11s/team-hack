@@ -36,7 +36,7 @@ function reducer(state = INIT_STATE, action) {
   }
 }
 
-const API = 'http://34.91.217.40/';
+const API = 'http://34.89.197.142/';
 
 const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
