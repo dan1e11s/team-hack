@@ -65,6 +65,9 @@
   justify-content: space-around;
   margin-bottom: 70px;
 }
+.liked {
+  color: red !important;
+}
 
 .count-box {
   width: 60px;

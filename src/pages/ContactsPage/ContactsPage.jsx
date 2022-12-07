@@ -13,9 +13,8 @@ const ContactsPage = () => {
           <a
             className="contactsPage_main_a"
             id="morsel1"
-            onClick={() => navigate('/')}
-          >
-            Главное
+            onClick={() => navigate("/")}>
+            Главная
           </a>
           <a className="contactsPage_main_a" id="morsel2">
             -
