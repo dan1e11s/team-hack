@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useSearchParams, useLocation } from "react-router-dom";
-import { useProduct } from "../../contexts/ProductContextProvider";
-import "./Category.css";
+import React, { useEffect, useState } from 'react';
+import { useSearchParams, useLocation } from 'react-router-dom';
+import { useProduct } from '../../contexts/ProductContextProvider';
+import './Category.css';
 
 const Category = () => {
   const { categories, getCategories } = useProduct();
@@ -12,17 +12,18 @@ const Category = () => {
   const { getProducts } = useProduct();
 
   const location = useLocation();
+  const category = location.search.substr(3, location.search.length);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const [query, setQuery] = useState(searchParams.get("q") || "");
+  const [query, setQuery] = useState(searchParams.get('q') || '');
 
   const search = new URLSearchParams(location.search);
 
   useEffect(() => {
-    if (query === "") {
+    if (query === '') {
       search.delete(query);
     } else {
-      search.set(query, "");
+      search.set(query, '');
     }
     setSearchParams({
       q: query,
@@ -35,18 +36,30 @@ const Category = () => {
 
   return (
     <div className="category-wrapper">
-      <div className="category-active">
-        <span className="category-title" onClick={() => setQuery("")}>
+      <div
+        className={
+          '?page=1' === location.search || category === ''
+            ? 'category-active'
+            : 'category-block'
+        }
+      >
+        <span className="category-title" onClick={() => setQuery('')}>
           Все
         </span>
       </div>
-      {categories.results?.map(item => (
-        <div key={item.title} className="category-block">
+      {categories.results?.map((item) => (
+        <div
+          key={item.title}
+          className={
+            item.slug === category ? 'category-active' : 'category-block'
+          }
+        >
           <span
             className="category-title"
             onClick={() => {
               setQuery(item.slug);
-            }}>
+            }}
+          >
             {item.title}
           </span>
         </div>

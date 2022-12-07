@@ -17,12 +17,10 @@ import {
 
 export default function TopTenProducts({ item }) {
   const { topTen, getTopTenProducts } = useProduct();
-  console.log(topTen);
 
   useEffect(() => {
     getTopTenProducts();
   }, []);
-  console.log(topTen);
 
   return (
     <div

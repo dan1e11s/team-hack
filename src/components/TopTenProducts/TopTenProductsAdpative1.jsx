@@ -20,7 +20,6 @@ export default function TopTenProductsAdpative1({ item }) {
   useEffect(() => {
     getTopTenProducts();
   }, []);
-  console.log(topTen);
 
   return (
     <div

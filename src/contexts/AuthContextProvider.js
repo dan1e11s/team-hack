@@ -59,7 +59,6 @@ const AuthContextProvider = ({ children }) => {
       );
       const username = localStorage.getItem('username');
       setCurrentUser(username);
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -110,7 +109,6 @@ const AuthContextProvider = ({ children }) => {
         `${API}account/set-restored-password/`,
         formData
       );
-      console.log(res);
       Swal.fire({
         title: 'Пароль успешно обновлён!',
         confirmButtonText: 'Ok',
