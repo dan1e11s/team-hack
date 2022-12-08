@@ -52,11 +52,11 @@ const CartContextProvider = ({ children }) => {
         totalPrice: 0,
       };
     }
-
-    dispatch({
+    const action = {
       type: 'GET_CART',
       payload: cart,
-    });
+    };
+    dispatch(action);
 
     dispatch({
       type: 'GET_CART_LENGTH',

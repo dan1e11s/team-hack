@@ -16,8 +16,8 @@ const labels = {
   5: '',
 };
 
-export default function Ratings() {
-  const value = 2;
+export default function Ratings({ oneProduct }) {
+  const value = oneProduct.views_count;
 
   return (
     <Box
