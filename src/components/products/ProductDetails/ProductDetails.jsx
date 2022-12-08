@@ -30,6 +30,7 @@ const ProductDetails = ({ oneProduct }) => {
     } else {
       setAddToCart(false);
     }
+    return () => {};
   }, []);
 
   function checkUser(oneProduct) {
@@ -171,7 +172,7 @@ const ProductDetails = ({ oneProduct }) => {
                 Отзывы <span>{oneProduct.comments_count}</span>
               </p>
             </div>
-            <Ratings />
+            <Ratings oneProduct={oneProduct} />
             <div style={{ marginBottom: '20px' }}>
               <button onClick={handleClickOpen} className="create-reviews">
                 Написать отзыв
